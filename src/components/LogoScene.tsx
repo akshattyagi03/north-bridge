@@ -400,7 +400,7 @@ class SceneBoundary extends Component<
   }
 }
 
-export default function LogoScene() {
+export default function LogoScene({ className = "" }: { className?: string }) {
   const pointer = useRef(new THREE.Vector2(0, 0));
   const shell = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
@@ -432,7 +432,7 @@ export default function LogoScene() {
   return (
     <div
       ref={shell}
-      className="relative w-full h-[360px] md:h-[460px] flex items-center justify-center"
+      className={`relative w-full h-[190px] sm:h-[220px] lg:h-[240px] flex items-center justify-center ${className}`}
       role="img"
       aria-label="North Bridge Tech 3D Architecture Symbol"
       onPointerMove={onPointerMove}

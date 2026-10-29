@@ -9,7 +9,7 @@ const REVIEWS = [
   {
     id: "rev-1",
     author: "Elena Rostova",
-    role: "Chief Technology Officer",
+    role: "CTO",
     company: "NexusPay Global",
     quote:
       "North Bridge engineered our core payment orchestration platform from the ground up. Over 1.2M transactions went through our engine on peak holiday sales with zero outages and sub-18ms latency. Their systems engineering depth is unmatched.",
@@ -72,9 +72,9 @@ export default function Reviews() {
           if (featuredCard) {
             animate(featuredCard, {
               opacity: [0, 1],
-              translateY: [30, 0],
-              scale: [0.97, 1],
-              duration: 700,
+              translateY: [20, 0],
+              scale: [0.98, 1],
+              duration: 550,
               ease: "outCubic",
             });
           }
@@ -82,15 +82,15 @@ export default function Reviews() {
           if (snapshotCards.length > 0) {
             animate(snapshotCards, {
               opacity: [0, 1],
-              translateY: [24, 0],
-              delay: stagger(60, { start: 300 }),
-              duration: 600,
+              translateY: [15, 0],
+              delay: stagger(45, { start: 200 }),
+              duration: 500,
               ease: "outCubic",
             });
           }
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
 
     observer.observe(el);
@@ -104,58 +104,67 @@ export default function Reviews() {
     <section
       id="reviews"
       ref={sectionRef}
-      className="min-h-[calc(100dvh-64px)] flex flex-col justify-between py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-16 border-b border-stone-200/70"
+      className="min-h-[calc(100dvh-64px)] lg:h-[calc(100dvh-64px)] lg:max-h-[calc(100dvh-64px)] flex flex-col justify-between py-2 sm:py-3 lg:py-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-16 overflow-hidden border-b border-stone-200/70"
     >
       {/* Animated Heading on Scroll */}
       <AnimatedHeading
         badge="Our Reviews"
-        mainText="Trusted by Technical Leaders"
-        accentText="& Visionary Founders."
-        subText="Direct assessments from executives who have partnered with North Bridge Tech to architect, build, and scale their most critical software assets."
+        mainText="Verified Partnership"
+        accentText="Client Testimonials."
+        subText="Unvarnished feedback from engineering executives and product leaders who rely on North Bridge Tech architectures in mission-critical environments."
       />
 
-      {/* Featured Testimonial Card */}
-      <div className="reviews-featured-card opacity-0 rounded-3xl border border-stone-200/90 bg-stone-50/70 p-6 sm:p-10 my-auto shadow-xs">
-        <div className="flex items-center justify-between pb-4 border-b border-stone-200">
-          <div className="text-xs text-stone-500 font-medium">
-            Industry Focus: <span className="font-semibold text-stone-800">{REVIEWS[currentIndex].industry}</span>
+      {/* Featured Review Main Card */}
+      <div className="reviews-featured-card opacity-0 rounded-2xl border border-stone-200/90 bg-stone-50/70 p-4 sm:p-5 shadow-2xs my-auto">
+        <div className="flex items-center justify-between pb-2.5 border-b border-stone-200/80">
+          <div className="flex items-center gap-2">
+            <div className="flex items-center text-[#C42625]">
+              {[...Array(REVIEWS[currentIndex].stars)].map((_, i) => (
+                <Star key={i} className="w-3.5 h-3.5 fill-current" />
+              ))}
+            </div>
+            <span className="text-xs font-bold text-stone-900">5.0 / 5.0 Rating</span>
+          </div>
+
+          <div className="text-[11px] text-stone-500 font-medium hidden sm:block">
+            Industry: <span className="font-semibold text-stone-800">{REVIEWS[currentIndex].industry}</span>
           </div>
 
           {/* Navigation arrows */}
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-stone-400 font-medium">
+          <div className="flex items-center gap-1.5">
+            <span className="text-[11px] text-stone-400 font-medium">
               {currentIndex + 1} of {REVIEWS.length}
             </span>
             <button
               onClick={prev}
-              className="p-1.5 rounded-full border border-stone-200 bg-white hover:bg-stone-100 text-stone-700 transition-colors shadow-2xs cursor-pointer"
+              className="p-1 rounded-full border border-stone-200 bg-white hover:bg-stone-100 text-stone-700 transition-colors shadow-2xs cursor-pointer"
               aria-label="Previous review"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={next}
-              className="p-1.5 rounded-full border border-stone-200 bg-white hover:bg-stone-100 text-stone-700 transition-colors shadow-2xs cursor-pointer"
+              className="p-1 rounded-full border border-stone-200 bg-white hover:bg-stone-100 text-stone-700 transition-colors shadow-2xs cursor-pointer"
               aria-label="Next review"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
-        <div className="py-6 sm:py-8">
-          <Quote className="w-8 h-8 text-[#C42625]/25 mb-4" />
-          <blockquote className="text-lg sm:text-2xl font-medium text-stone-900 leading-relaxed">
+        <div className="py-3 sm:py-3.5">
+          <Quote className="w-6 h-6 text-[#C42625]/25 mb-1.5" />
+          <blockquote className="text-sm sm:text-base lg:text-lg font-medium text-stone-900 leading-relaxed line-clamp-3">
             "{REVIEWS[currentIndex].quote}"
           </blockquote>
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-5 border-t border-stone-200 gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-3 border-t border-stone-200 gap-2">
           <div>
-            <div className="text-base font-bold text-stone-900">
+            <div className="text-xs sm:text-sm font-bold text-stone-900">
               {REVIEWS[currentIndex].author}
             </div>
-            <div className="text-xs text-stone-500 font-medium">
+            <div className="text-[11px] text-stone-500 font-medium">
               {REVIEWS[currentIndex].role} —{" "}
               <span className="text-stone-800 font-semibold">
                 {REVIEWS[currentIndex].company}
@@ -163,7 +172,7 @@ export default function Reviews() {
             </div>
           </div>
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-stone-200 text-xs font-semibold text-stone-800 shadow-2xs">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-stone-200 text-xs font-semibold text-stone-800 shadow-2xs self-start sm:self-auto">
             <CheckCircle2 className="w-3.5 h-3.5 text-[#C42625]" />
             <span>{REVIEWS[currentIndex].outcome}</span>
           </div>
@@ -171,28 +180,25 @@ export default function Reviews() {
       </div>
 
       {/* 4 Cards Grid Snapshot */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-auto">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 shrink-0">
         {REVIEWS.map((rev, idx) => (
           <div
             key={rev.id}
             onClick={() => setCurrentIndex(idx)}
-            className={`reviews-snapshot-card opacity-0 cursor-pointer p-4 rounded-xl border transition-all ${
+            className={`reviews-snapshot-card opacity-0 cursor-pointer p-2.5 sm:p-3 rounded-xl border transition-all ${
               currentIndex === idx
-                ? "bg-white border-stone-900 shadow-xs"
-                : "bg-stone-50/50 border-stone-200 hover:bg-white"
+                ? "bg-white border-stone-900 shadow-2xs"
+                : "bg-stone-50/50 border-stone-200/90 hover:bg-white"
             }`}
           >
-            <div className="flex items-center justify-between text-xs text-stone-400 mb-1 font-medium">
+            <div className="flex items-center justify-between text-[11px] text-stone-400 mb-0.5 font-medium">
               <span className="truncate">{rev.company}</span>
-              <span className="text-[#C42625] font-semibold">5.0 ★</span>
+              <span className="text-[#C42625] font-semibold text-[10px]">5.0 ★</span>
             </div>
             <div className="text-xs font-bold text-stone-900 truncate">
               {rev.author}
             </div>
-            <div className="text-xs text-stone-500 truncate mb-1.5">
-              {rev.role}
-            </div>
-            <div className="text-xs text-[#C42625] font-semibold truncate pt-1.5 border-t border-stone-100">
+            <div className="text-[11px] text-[#C42625] font-medium truncate pt-1 border-t border-stone-100 mt-1">
               {rev.outcome}
             </div>
           </div>

@@ -39,8 +39,8 @@ export default function AnimatedHeading({
           if (badgeEl) {
             animate(badgeEl, {
               opacity: [0, 1],
-              translateY: [-10, 0],
-              duration: 500,
+              translateY: [-6, 0],
+              duration: 450,
               ease: "outCubic",
             });
           }
@@ -48,9 +48,9 @@ export default function AnimatedHeading({
           if (words.length > 0) {
             animate(words, {
               opacity: [0, 1],
-              translateY: [24, 0],
-              delay: stagger(45, { start: 100 }),
-              duration: 650,
+              translateY: [16, 0],
+              delay: stagger(35, { start: 80 }),
+              duration: 550,
               ease: "outCubic",
             });
           }
@@ -58,9 +58,9 @@ export default function AnimatedHeading({
           if (accentEl) {
             animate(accentEl, {
               opacity: [0, 1],
-              translateY: [20, 0],
-              delay: 250,
-              duration: 750,
+              translateY: [14, 0],
+              delay: 180,
+              duration: 600,
               ease: "outCubic",
             });
           }
@@ -68,8 +68,8 @@ export default function AnimatedHeading({
           if (lineEl) {
             animate(lineEl, {
               scaleX: [0, 1],
-              delay: 380,
-              duration: 700,
+              delay: 300,
+              duration: 600,
               ease: "outExpo",
             });
           }
@@ -77,15 +77,15 @@ export default function AnimatedHeading({
           if (subEl) {
             animate(subEl, {
               opacity: [0, 1],
-              translateY: [15, 0],
-              delay: 300,
-              duration: 650,
+              translateY: [10, 0],
+              delay: 220,
+              duration: 550,
               ease: "outCubic",
             });
           }
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
 
     observer.observe(el);
@@ -95,35 +95,37 @@ export default function AnimatedHeading({
   const words = mainText.split(" ");
 
   return (
-    <div ref={containerRef} className={`flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-stone-200 ${className}`}>
+    <div
+      ref={containerRef}
+      className={`flex flex-col md:flex-row md:items-end justify-between gap-3 pb-3 sm:pb-3.5 border-b border-stone-200/80 shrink-0 ${className}`}
+    >
       <div>
-        {/* Badge */}
-        <div className="anim-badge opacity-0 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 text-xs text-stone-700 mb-2.5 font-medium">
-          <span className="w-2 h-2 rounded-full bg-[#C42625] animate-pulse" />
+        {/* Compact Badge */}
+        <div className="anim-badge opacity-0 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-stone-100 text-[11px] text-stone-700 mb-1 font-medium">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#C42625] animate-pulse" />
           <span>{badge}</span>
         </div>
 
-        {/* Heading */}
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-stone-900 tracking-tight leading-[1.15]">
-          <span className="inline-flex flex-wrap gap-x-2">
+        {/* Compact Heading */}
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-stone-900 tracking-tight leading-snug">
+          <span className="inline-flex flex-wrap gap-x-1.5">
             {words.map((word, i) => (
               <span key={i} className="anim-word opacity-0 inline-block">
                 {word}
               </span>
             ))}
           </span>{" "}
-          <br className="hidden sm:inline" />
           <span className="anim-accent opacity-0 text-[#C42625] relative inline-block">
             {accentText}
             <span
-              className="anim-line absolute left-0 -bottom-1 w-full h-[2.5px] bg-[#C42625]/40 origin-left scale-x-0 rounded-full"
+              className="anim-line absolute left-0 -bottom-0.5 w-full h-[2px] bg-[#C42625]/40 origin-left scale-x-0 rounded-full"
             />
           </span>
         </h2>
       </div>
 
       {subText && (
-        <p className="anim-sub opacity-0 max-w-md text-sm sm:text-base text-stone-600 leading-relaxed font-normal">
+        <p className="anim-sub opacity-0 max-w-sm lg:max-w-md text-xs sm:text-sm text-stone-600 leading-relaxed font-normal line-clamp-2 md:text-right">
           {subText}
         </p>
       )}
