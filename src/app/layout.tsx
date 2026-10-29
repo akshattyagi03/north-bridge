@@ -1,22 +1,30 @@
 import type { Metadata, Viewport } from "next";
-// @ts-ignore Next.js resolves global CSS side-effect imports.
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "North Bridge Tech — Coming Soon",
+  title: "North Bridge Tech — Digital Product Studio",
   description:
-    "North Bridge Tech is a digital product studio bringing web, mobile, cloud, design, integrations, and digital marketing together. Coming soon."
+    "Engineering high-performance web applications, scalable cloud infrastructure, mobile products, and bespoke UI/UX design systems.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
-// Matches --paper in globals.css so mobile browser chrome blends into the page.
 export const viewport: Viewport = {
-  themeColor: "#11100e"
+  themeColor: "#FFFFFF",
+  colorScheme: "light",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className="scroll-smooth">
+      <body className="bg-white text-[#141312] antialiased min-h-screen selection:bg-[#C42625] selection:text-white">
+        {children}
+      </body>
     </html>
   );
 }
