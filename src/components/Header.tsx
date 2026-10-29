@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Menu, ArrowRight } from "lucide-react";
+import { animate } from "animejs";
 import MobileSidebar from "./MobileSidebar";
 
 export interface NavLinkItem {
@@ -21,15 +22,116 @@ export const NAV_LINKS: NavLinkItem[] = [
 
 export default function Header() {
   const [activeSection, setActiveSection] = useState<string>("hero");
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  const navRef = useRef<HTMLElement>(null);
+  const itemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const isInitialRef = useRef(true);
+
+  const [indicator, setIndicator] = useState<{
+    left: number;
+    top: number;
+    width: number;
+    height: number;
+    opacity: number;
+  }>({
+    left: 0,
+    top: 0,
+    width: 0,
+    height: 0,
+    opacity: 0,
+  });
+
+  const updateIndicator = useCallback(() => {
+    const currentId = hoveredId || activeSection;
+    const nav = navRef.current;
+    const target = itemRefs.current[currentId];
+    if (!nav || !target) {
+      return;
+    }
+
+    const navRect = nav.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+
+    setIndicator({
+      left: targetRect.left - navRect.left,
+      top: targetRect.top - navRect.top,
+      width: targetRect.width,
+      height: targetRect.height,
+      opacity: 1,
+    });
+  }, [hoveredId, activeSection]);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    // Measurement pass once mounted and after fonts/DOM paint
+    const timer = setTimeout(() => {
+      updateIndicator();
+      requestAnimationFrame(() => {
+        isInitialRef.current = false;
+      });
+    }, 60);
+
+    if (typeof document !== "undefined" && document.fonts) {
+      document.fonts.ready.then(updateIndicator);
+    }
+
+    window.addEventListener("resize", updateIndicator);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", updateIndicator);
+    };
+  }, [mounted, updateIndicator]);
+
+  useEffect(() => {
+    if (mounted) {
+      updateIndicator();
+    }
+  }, [hoveredId, activeSection, mounted, updateIndicator]);
+
+  // Nav entrance animation
+  useEffect(() => {
+    if (navRef.current) {
+      animate(navRef.current, {
+        opacity: [0, 1],
+        translateY: [-6, 0],
+        duration: 500,
+        ease: "outExpo",
+      });
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
+      // Scroll-spy: check if scrolled to near bottom
+      const isAtBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 60;
+      if (isAtBottom) {
+        setActiveSection("contact");
+        return;
+      }
+
       // Scroll-spy: find which section is currently centered/visible in the viewport
-      const sectionIds = ["hero", "about", "services", "portfolio", "reviews", "projects", "contact"];
+      const sectionIds = [
+        "hero",
+        "about",
+        "services",
+        "portfolio",
+        "reviews",
+        "projects",
+        "contact",
+      ];
       const scrollPosition = window.scrollY + 200;
 
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -83,23 +185,55 @@ export default function Header() {
             </div>
           </button>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6">
+          {/* Desktop Navigation with Fluid Sliding Indicator Pill */}
+          <nav
+            ref={navRef}
+            onMouseLeave={() => setHoveredId(null)}
+            className="relative hidden lg:flex items-center p-1 rounded-full bg-stone-100/75 border border-stone-200/70 backdrop-blur-xs shadow-[inset_0_1px_2px_rgba(0,0,0,0.03)]"
+          >
+            {/* Sliding Pill Indicator */}
+            {mounted && (
+              <div
+                aria-hidden="true"
+                className="absolute rounded-full bg-white shadow-xs border border-stone-200/90 pointer-events-none will-change-transform"
+                style={{
+                  transform: `translate3d(${indicator.left}px, ${indicator.top}px, 0)`,
+                  width: `${indicator.width}px`,
+                  height: `${indicator.height}px`,
+                  opacity: indicator.opacity,
+                  transition: isInitialRef.current
+                    ? "none"
+                    : "transform 280ms cubic-bezier(0.16, 1, 0.3, 1), width 280ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms ease",
+                }}
+              >
+                {/* Micro Crimson Accent Line */}
+                <span
+                  className={`absolute bottom-[3px] left-1/2 -translate-x-1/2 h-[2px] rounded-full bg-[#C42625] transition-all duration-300 ${
+                    hoveredId && hoveredId !== activeSection
+                      ? "w-2.5 opacity-60"
+                      : "w-4 opacity-100 shadow-[0_0_6px_rgba(196,38,37,0.35)]"
+                  }`}
+                />
+              </div>
+            )}
+
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.id;
+              const isHovered = hoveredId === link.id;
               return (
                 <button
                   key={link.id}
+                  ref={(el) => {
+                    itemRefs.current[link.id] = el;
+                  }}
                   onClick={() => scrollToSection(link.id)}
-                  className={`text-xs font-semibold tracking-wide transition-all relative py-1.5 cursor-pointer flex items-center gap-1.5 ${
-                    isActive
+                  onMouseEnter={() => setHoveredId(link.id)}
+                  className={`relative z-10 px-3.5 py-1.5 text-xs font-semibold tracking-wide transition-colors duration-200 cursor-pointer rounded-full select-none whitespace-nowrap ${
+                    isActive || isHovered
                       ? "text-stone-950 font-bold"
                       : "text-stone-500 hover:text-stone-900"
                   }`}
                 >
-                  {isActive && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C42625]" />
-                  )}
                   <span>{link.name}</span>
                 </button>
               );
