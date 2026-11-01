@@ -2,8 +2,12 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import GeometricLogoCanvas from "./GeometricLogoCanvas";
+import { useTheme } from "../context/ThemeContext";
 
 export default function SplashScreen() {
+  const { theme, mounted: themeMounted } = useTheme();
+  const isDark = themeMounted ? theme === "dark" : false; // Defaults to light mode initially
+
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(true);
   const [landing, setLanding] = useState(false);
@@ -101,7 +105,9 @@ export default function SplashScreen() {
   return (
     <div
       aria-label="Loading Website..."
-      className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#090A0D] text-white select-none transition-all duration-700 ease-out ${
+      className={`fixed inset-0 z-50 flex flex-col items-center justify-center select-none transition-all duration-700 ease-out ${
+        isDark ? "bg-[#090A0D] text-white" : "bg-[#F7F7F5] text-[#18191B]"
+      } ${
         fadingOut
           ? "opacity-0 pointer-events-none"
           : "opacity-100"
@@ -109,7 +115,11 @@ export default function SplashScreen() {
     >
       {/* Background ambient lighting */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] bg-[#C52623]/12 rounded-full blur-[120px]" />
+        <div
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full blur-[120px] ${
+            isDark ? "bg-[#C52623]/12" : "bg-[#C52623]/10"
+          }`}
+        />
       </div>
 
       {/* Center 3D Model Stage - Reduced Size with Landing Motion */}
@@ -143,7 +153,11 @@ export default function SplashScreen() {
             landing ? "opacity-0" : "opacity-100"
           }`}
         >
-          <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden p-0.5 border border-white/5">
+          <div
+            className={`w-full h-1 rounded-full overflow-hidden p-0.5 border ${
+              isDark ? "bg-white/10 border-white/5" : "bg-stone-300/70 border-stone-300/40"
+            }`}
+          >
             <div
               className="h-full bg-gradient-to-r from-[#851513] via-[#C52623] to-[#ff4a47] rounded-full shadow-[0_0_10px_rgba(197,38,35,0.9)] transition-all duration-100 ease-out"
               style={{ width: `${progress}%` }}

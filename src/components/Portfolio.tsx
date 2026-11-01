@@ -86,7 +86,7 @@ const PORTFOLIO_PROJECTS = [
 
 export default function Portfolio() {
   const { theme, mounted: themeMounted } = useTheme();
-  const isDark = themeMounted ? theme === "dark" : true;
+  const isDark = themeMounted ? theme === "dark" : false;
 
   const [activeCategory, setActiveCategory] = useState("All");
   const sectionRef = useRef<HTMLDivElement>(null);

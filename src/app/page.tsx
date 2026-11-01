@@ -14,7 +14,7 @@ import Footer from "../components/Footer";
 
 export default function Home() {
   const { theme, mounted } = useTheme();
-  const isDark = mounted ? theme === "dark" : true;
+  const isDark = mounted ? theme === "dark" : false;
 
   return (
     <div

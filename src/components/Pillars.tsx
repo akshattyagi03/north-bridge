@@ -64,7 +64,7 @@ export const PILLARS_DATA = [
 
 export default function Pillars() {
   const { theme, mounted: themeMounted } = useTheme();
-  const isDark = themeMounted ? theme === "dark" : true;
+  const isDark = themeMounted ? theme === "dark" : false;
 
   const [activePillar, setActivePillar] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);

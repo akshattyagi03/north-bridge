@@ -78,7 +78,7 @@ export const TIMELINE_STAGES = [
 
 export default function Process() {
   const { theme, mounted: themeMounted } = useTheme();
-  const isDark = themeMounted ? theme === "dark" : true;
+  const isDark = themeMounted ? theme === "dark" : false;
 
   const sectionRef = useRef<HTMLDivElement>(null);
 

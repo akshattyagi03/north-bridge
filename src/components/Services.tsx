@@ -114,7 +114,7 @@ const CAROUSEL_ITEMS = [...SERVICES, ...SERVICES];
 
 export default function Services() {
   const { theme, mounted: themeMounted } = useTheme();
-  const isDark = themeMounted ? theme === "dark" : true;
+  const isDark = themeMounted ? theme === "dark" : false;
 
   const [selectedService, setSelectedService] = useState<number | null>(null);
   const [isPaused, setIsPaused] = useState(false);

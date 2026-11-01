@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#090A0D",
-  colorScheme: "dark light",
+  themeColor: "#F7F7F5",
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth dark" data-theme="dark">
+    <html lang="en" className="scroll-smooth light" data-theme="light">
       <body className="antialiased min-h-screen selection:bg-[#C52623] selection:text-white transition-colors duration-300">
         <ThemeProvider>
           {children}

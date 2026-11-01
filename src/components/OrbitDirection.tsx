@@ -71,7 +71,7 @@ export const ORBIT_POINTS = [
 
 export default function OrbitDirection() {
   const { theme, mounted: themeMounted } = useTheme();
-  const isDark = themeMounted ? theme === "dark" : true;
+  const isDark = themeMounted ? theme === "dark" : false;
 
   const [activePoint, setActivePoint] = useState<number>(0);
   const [isHovered, setIsHovered] = useState(false);

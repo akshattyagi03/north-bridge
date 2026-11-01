@@ -8,7 +8,7 @@ import SurpriseLogoExperience from "./SurpriseLogoExperience";
 
 export default function Hero() {
   const { theme, mounted: themeMounted } = useTheme();
-  const isDark = themeMounted ? theme === "dark" : true;
+  const isDark = themeMounted ? theme === "dark" : false;
 
   const [showSurprise, setShowSurprise] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);

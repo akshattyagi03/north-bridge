@@ -12,19 +12,19 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: "dark",
+  theme: "light",
   toggleTheme: () => {},
   setTheme: () => {},
   mounted: false,
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("dark");
+  const [theme, setThemeState] = useState<Theme>("light");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Read from localStorage or default to dark
-    let initialTheme: Theme = "dark";
+    // Read from localStorage or default to light
+    let initialTheme: Theme = "light";
     try {
       const saved = localStorage.getItem("nbt-theme") as Theme | null;
       if (saved === "light" || saved === "dark") {

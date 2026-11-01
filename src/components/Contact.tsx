@@ -36,7 +36,7 @@ const BUDGET_OPTIONS = [
 
 export default function Contact() {
   const { theme, mounted: themeMounted } = useTheme();
-  const isDark = themeMounted ? theme === "dark" : true;
+  const isDark = themeMounted ? theme === "dark" : false;
 
   const [selectedService, setSelectedService] = useState("Web Development");
   const [selectedBudget, setSelectedBudget] = useState("$25k - $50k");

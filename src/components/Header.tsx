@@ -24,7 +24,7 @@ export const NAV_LINKS: NavLinkItem[] = [
 
 export default function Header() {
   const { theme, toggleTheme, mounted: themeMounted } = useTheme();
-  const isDark = themeMounted ? theme === "dark" : true;
+  const isDark = themeMounted ? theme === "dark" : false;
 
   const [activeSection, setActiveSection] = useState<string>("hero");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
