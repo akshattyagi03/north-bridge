@@ -162,7 +162,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className={`relative min-h-screen flex flex-col justify-center items-center pt-24 sm:pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden transition-colors duration-300 ${
+      className={`relative h-[calc(100vh-4rem)] h-[calc(100dvh-4rem)] min-h-[calc(100dvh-4rem)] flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-5 overflow-hidden transition-colors duration-300 ${
         isDark ? "bg-[#090A0D] text-white" : "bg-[#FAFAF9] text-[#18191B]"
       }`}
     >
@@ -216,7 +216,7 @@ export default function Hero() {
             {/* Subtle Radiant Aura */}
             <div className="hero-logo-aura opacity-0 absolute -inset-8 bg-radial-[circle,rgba(197,38,35,0.25)_0%,transparent_70%] rounded-full blur-2xl pointer-events-none" />
 
-            <h1 className="relative font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-none select-none">
+            <h1 className="relative font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none select-none">
               <span className={isDark ? "text-white" : "text-[#18191B]"}>North </span>
               <span className="text-[#C52623] drop-shadow-[0_0_24px_rgba(197,38,35,0.35)]">Bridge </span>
               <span className={isDark ? "text-white" : "text-[#18191B]"}>Tech</span>
@@ -228,7 +228,7 @@ export default function Hero() {
             SLOGAN (Shortened, Sleek & Executive Proportions)
            ========================================================================= */}
         <p
-          className={`hero-slogan text-base sm:text-lg md:text-xl lg:text-2xl font-medium tracking-tight leading-snug max-w-xl mx-auto mt-2 sm:mt-3 mb-6 sm:mb-8 transition-colors duration-300 ${
+          className={`hero-slogan text-sm sm:text-base md:text-lg lg:text-xl font-medium tracking-tight leading-snug max-w-xl mx-auto mt-2 sm:mt-2.5 mb-4 sm:mb-5 transition-colors duration-300 ${
             isDark ? "text-stone-300" : "text-[#484944]"
           }`}
         >
@@ -243,11 +243,11 @@ export default function Hero() {
         {/* =========================================================================
             GLOWING CTA BUTTONS WITH SOLID RED SHADOW
            ========================================================================= */}
-        <div className="hero-cta-wrap opacity-0 relative mb-6 sm:mb-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+        <div className="hero-cta-wrap opacity-0 relative mb-4 sm:mb-5 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           <div className="relative group">
             <button
               onClick={() => scrollTo("contact")}
-              className="relative px-6 py-3 rounded-full bg-[#18191B] border-2 border-[#C52623] text-white text-xs sm:text-sm font-bold tracking-wide transition-all inline-flex items-center gap-2 shadow-[4px_4px_0px_#C52623] hover:shadow-[6px_6px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
+              className="relative px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#18191B] border-2 border-[#C52623] text-white text-xs sm:text-sm font-bold tracking-wide transition-all inline-flex items-center gap-2 shadow-[4px_4px_0px_#C52623] hover:shadow-[6px_6px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
             >
               <span>Book a Free Demo</span>
               <ArrowRight className="w-4 h-4 text-[#C52623] group-hover:translate-x-1 transition-transform" />
@@ -257,7 +257,7 @@ export default function Hero() {
           {/* SURPRISE ME 3D LOGO ANIMATION BUTTON */}
           <button
             onClick={() => setShowSurprise(true)}
-            className={`group px-5 py-3 rounded-full border-2 transition-all duration-300 inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wide shadow-[4px_4px_0px_#C52623] hover:shadow-[6px_6px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer backdrop-blur-md ${
+            className={`group px-4 py-2.5 sm:px-5 sm:py-3 rounded-full border-2 transition-all duration-300 inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wide shadow-[4px_4px_0px_#C52623] hover:shadow-[6px_6px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer backdrop-blur-md ${
               isDark
                 ? "border-[#C52623] bg-[#141518] text-white hover:bg-[#C52623]"
                 : "border-[#C52623] bg-white text-[#C52623] hover:bg-[#C52623] hover:text-white"
