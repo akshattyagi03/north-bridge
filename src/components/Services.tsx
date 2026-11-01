@@ -255,7 +255,7 @@ export default function Services() {
         ref={carouselRef}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        className="flex gap-5 overflow-x-hidden py-6 px-4 sm:px-6 cursor-grab active:cursor-grabbing no-scrollbar select-none"
+        className="flex gap-4 sm:gap-4.5 overflow-x-hidden py-4 sm:py-5 px-4 sm:px-6 cursor-grab active:cursor-grabbing no-scrollbar select-none"
         style={{ scrollBehavior: "auto" }}
       >
         {CAROUSEL_ITEMS.map((srv, idx) => {
@@ -268,14 +268,14 @@ export default function Services() {
               key={`${srv.id}-${idx}`}
               onMouseMove={(e) => handleCardMouseMove(e, idx)}
               onMouseLeave={() => handleCardMouseLeave(idx)}
-              className="relative shrink-0 w-[270px] sm:w-[300px] md:w-[325px] h-[395px] sm:h-[415px] rounded-2xl group cursor-pointer transition-transform duration-300 ease-out"
+              className="relative shrink-0 w-[230px] sm:w-[250px] md:w-[265px] h-[325px] sm:h-[340px] rounded-2xl group cursor-pointer transition-transform duration-300 ease-out"
               style={{
                 perspective: "1200px",
               }}
             >
               {/* 3D Tilt Container with Solid Red Shadow */}
               <div
-                className="w-full h-full rounded-2xl border border-white/20 relative overflow-hidden transition-all duration-200 ease-out shadow-[5px_5px_0px_#C52623] group-hover:shadow-[7px_7px_0px_#C52623] flex flex-col justify-between p-5 sm:p-6"
+                className="w-full h-full rounded-2xl border border-white/20 relative overflow-hidden transition-all duration-200 ease-out shadow-[4px_4px_0px_#C52623] group-hover:shadow-[6px_6px_0px_#C52623] flex flex-col justify-between p-3.5 sm:p-4"
                 style={{
                   transform: `rotateX(${tilt.rotX}deg) rotateY(${tilt.rotY}deg) scale3d(${
                     tilt.rotX !== 0 || tilt.rotY !== 0 ? 1.02 : 1
@@ -294,7 +294,7 @@ export default function Services() {
                     src={srv.bgImage}
                     alt={srv.title}
                     fill
-                    sizes="(max-width: 768px) 300px, 340px"
+                    sizes="(max-width: 768px) 260px, 280px"
                     className="object-cover object-center"
                   />
                   {/* Cinematic Dark Gradient Overlay */}
@@ -304,46 +304,46 @@ export default function Services() {
                 {/* Top Header Information (Floating in 3D) */}
                 <div
                   className="relative z-10 flex items-center justify-between"
-                  style={{ transform: "translateZ(24px)" }}
+                  style={{ transform: "translateZ(20px)" }}
                 >
-                  <span className="font-mono text-xs font-bold text-white bg-[#C52623] px-2.5 py-0.5 rounded-full shadow-md">
+                  <span className="font-mono text-[10px] font-bold text-white bg-[#C52623] px-2 py-0.5 rounded-full shadow-xs">
                     {srv.num}
                   </span>
 
-                  <div className="w-8 h-8 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-md group-hover:scale-105 group-hover:bg-[#C52623] transition-all duration-300">
-                    <Icon className="w-4 h-4" />
+                  <div className="w-7 h-7 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-xs group-hover:scale-105 group-hover:bg-[#C52623] transition-all duration-300">
+                    <Icon className="w-3.5 h-3.5" />
                   </div>
                 </div>
 
                 {/* Middle / Bottom Content (Floating in 3D) */}
                 <div
-                  className="relative z-10 space-y-2.5 pt-4"
-                  style={{ transform: "translateZ(28px)" }}
+                  className="relative z-10 space-y-2 pt-2"
+                  style={{ transform: "translateZ(24px)" }}
                 >
-                  <h3 className="font-heading text-lg sm:text-xl font-black text-white leading-tight group-hover:text-[#ff4a47] transition-colors">
+                  <h3 className="font-heading text-sm sm:text-base font-black text-white leading-tight group-hover:text-[#ff4a47] transition-colors">
                     {srv.title}
                   </h3>
 
-                  <p className="text-[11px] text-stone-300 leading-snug font-normal">
+                  <p className="text-[10px] sm:text-[11px] text-stone-300 leading-snug font-normal line-clamp-2">
                     {srv.description}
                   </p>
 
                   {/* Deliverables Checklist with Crimson Checkmarks */}
                   <div className="space-y-1 pt-0.5">
                     {srv.deliverables.map((del, i) => (
-                      <div key={i} className="flex items-center gap-1.5 text-[10px] text-stone-200">
-                        <CheckCircle2 className="w-3 h-3 text-[#C52623] shrink-0" />
+                      <div key={i} className="flex items-center gap-1.5 text-[9px] sm:text-[10px] text-stone-200">
+                        <CheckCircle2 className="w-2.5 h-2.5 text-[#C52623] shrink-0" />
                         <span className="font-medium truncate">{del}</span>
                       </div>
                     ))}
                   </div>
 
                   {/* Tech stack mini tags */}
-                  <div className="flex flex-wrap gap-1 pt-1">
-                    {srv.stack.map((t) => (
+                  <div className="flex flex-wrap gap-1 pt-0.5">
+                    {srv.stack.slice(0, 3).map((t) => (
                       <span
                         key={t}
-                        className="text-[8px] font-mono px-2 py-0.5 rounded-full bg-white/10 backdrop-blur-md text-stone-300 border border-white/10"
+                        className="text-[8px] font-mono px-1.5 py-0.5 rounded-full bg-white/10 backdrop-blur-md text-stone-300 border border-white/10"
                       >
                         {t}
                       </span>
@@ -354,18 +354,18 @@ export default function Services() {
                   <div className="pt-2 border-t border-white/15 flex items-center justify-between gap-2">
                     <button
                       onClick={() => setSelectedService(originalIdx)}
-                      className="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white text-[11px] font-medium transition-all inline-flex items-center gap-1 cursor-pointer"
+                      className="px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white text-[10px] font-medium transition-all inline-flex items-center gap-1 cursor-pointer"
                     >
                       <span>Overview</span>
-                      <ExternalLink className="w-3 h-3 text-[#C52623]" />
+                      <ExternalLink className="w-2.5 h-2.5 text-[#C52623]" />
                     </button>
 
                     <button
                       onClick={scrollToContact}
-                      className="px-3.5 py-1 rounded-full bg-[#C52623] hover:bg-[#aa1f1c] text-white text-[11px] font-bold transition-all shadow-[2px_2px_0px_#851513] inline-flex items-center gap-1 cursor-pointer"
+                      className="px-3 py-1 rounded-full bg-[#C52623] hover:bg-[#aa1f1c] text-white text-[10px] font-bold transition-all shadow-[2px_2px_0px_#851513] inline-flex items-center gap-1 cursor-pointer"
                     >
                       <span>Inquire</span>
-                      <ArrowRight className="w-3 h-3" />
+                      <ArrowRight className="w-2.5 h-2.5" />
                     </button>
                   </div>
                 </div>

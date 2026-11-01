@@ -179,38 +179,20 @@ export default function About() {
         </div>
 
         {/* =========================================================================
-            RIGHT COLUMN: ROTATING 3D FIGURE (Clean Frame, No Cheesy Text)
+            RIGHT COLUMN: ROTATING 3D FIGURE (Frameless, Clean Monogram)
            ========================================================================= */}
-        <div className="about-right-3d opacity-0 lg:col-span-5 relative flex flex-col items-center justify-center">
-          <div
-            className={`w-full max-w-sm aspect-square rounded-2xl border shadow-[6px_6px_0px_#C52623] relative overflow-hidden flex flex-col items-center justify-center p-4 transition-colors duration-300 ${
-              isDark
-                ? "bg-gradient-to-b from-[#121316] via-[#090A0D] to-[#121316] border-white/10"
-                : "bg-gradient-to-b from-stone-50 via-white to-stone-50 border-[#484944]/25"
-            }`}
-          >
-            {/* Subtle Corner Indicator */}
-            <div className="w-full flex items-center justify-between text-[10px] font-mono z-10 px-1 text-stone-500">
-              <span className="flex items-center gap-1.5 text-[#C52623] font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C52623] animate-pulse" />
-                NBT 3D
-              </span>
-              <span className="text-stone-400">Interactive</span>
-            </div>
-
-            {/* Central 3D Canvas */}
-            <div className="relative w-full h-[220px] sm:h-[250px] flex items-center justify-center my-auto z-10">
-              <GeometricLogoCanvas
-                mode="float"
-                autoRotate={true}
-                scale={1.05}
-                transparentBg={true}
-                cameraPreset="isometric"
-                hoverTilt={true}
-                interactive={false}
-                className="w-full h-full"
-              />
-            </div>
+        <div className="about-right-3d opacity-0 lg:col-span-5 relative flex items-center justify-center">
+          <div className="relative w-full max-w-sm h-[280px] sm:h-[340px] flex items-center justify-center">
+            <GeometricLogoCanvas
+              mode="float"
+              autoRotate={true}
+              scale={1.15}
+              transparentBg={true}
+              cameraPreset="isometric"
+              hoverTilt={true}
+              interactive={false}
+              className="w-full h-full"
+            />
           </div>
         </div>
       </div>
