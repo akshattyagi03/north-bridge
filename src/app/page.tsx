@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <div
       className={`min-h-screen transition-colors duration-300 selection:bg-[#C52623] selection:text-white ${
-        isDark ? "bg-[#090A0D] text-white" : "bg-white text-[#18191B]"
+        isDark ? "bg-[#090A0D] text-white" : "bg-[#F7F7F5] text-[#18191B]"
       }`}
     >
       {/* 3D Kinematic Flash Screen */}

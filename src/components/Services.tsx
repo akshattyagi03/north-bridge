@@ -216,7 +216,7 @@ export default function Services() {
       className={`py-10 sm:py-14 scroll-mt-16 relative overflow-hidden transition-colors duration-300 ${
         isDark
           ? "bg-[#090A0D] text-white border-y border-stone-800/80"
-          : "bg-[#FAFAF9] text-[#18191B] border-y border-stone-200"
+          : "bg-[#F0F0EE] text-[#18191B] border-y border-stone-200/90"
       }`}
     >
       {/* Background ambient lighting */}

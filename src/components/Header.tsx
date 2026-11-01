@@ -162,33 +162,33 @@ export default function Header() {
   return (
     <>
       {/* =========================================================================
-          MAIN STICKY NAVBAR (64px)
+          FLOATING ROUNDED GLASSMORPHIC NAVBAR (With Top & Side Margin)
          ========================================================================= */}
-      <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
-          isDark
-            ? scrolled
-              ? "h-16 bg-[#090A0D]/90 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/40 text-white"
-              : "h-16 bg-[#090A0D]/80 backdrop-blur-md border-b border-white/5 text-white"
-            : scrolled
-            ? "h-16 bg-white/95 backdrop-blur-xl border-b border-stone-200/90 shadow-sm text-[#18191B]"
-            : "h-16 bg-white/90 backdrop-blur-md border-b border-stone-200/60 text-[#18191B]"
-        } px-4 sm:px-6 lg:px-8`}
-      >
-        <div className="max-w-7xl mx-auto h-full flex items-center justify-between">
+      <header className="sticky top-2.5 sm:top-4 z-40 w-full px-3.5 sm:px-6 lg:px-8 max-w-7xl mx-auto pointer-events-none transition-all duration-300">
+        <div
+          className={`pointer-events-auto w-full h-14 sm:h-16 rounded-2xl sm:rounded-full px-3.5 sm:px-6 flex items-center justify-between transition-all duration-300 backdrop-blur-2xl border ${
+            isDark
+              ? scrolled
+                ? "bg-[#090A0D]/80 border-white/15 shadow-[0_12px_40px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.1)] text-white"
+                : "bg-[#090A0D]/70 border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.06)] text-white"
+              : scrolled
+              ? "bg-[#F7F7F5]/85 border-stone-300/80 shadow-[0_12px_40px_rgba(0,0,0,0.08),inset_0_1px_1px_rgba(255,255,255,0.95)] text-[#18191B]"
+              : "bg-[#F7F7F5]/75 border-stone-200/90 shadow-[0_8px_30px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.9)] text-[#18191B]"
+          }`}
+        >
           {/* Brand Logo Only */}
           <button
             onClick={() => scrollToSection("hero")}
             className="group flex items-center select-none text-left cursor-pointer"
             aria-label="NorthBridge Tech"
           >
-            <div className="relative h-8 sm:h-9 flex items-center">
+            <div className="relative h-7 sm:h-8 flex items-center">
               <Image
                 src="/nbt-logo.png"
                 alt="NorthBridge Tech Logo"
-                width={84}
-                height={46}
-                className={`h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105 ${
+                width={80}
+                height={44}
+                className={`h-7 sm:h-8 w-auto object-contain transition-transform group-hover:scale-105 ${
                   isDark ? "brightness-110" : ""
                 }`}
                 priority

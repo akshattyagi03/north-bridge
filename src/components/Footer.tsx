@@ -22,7 +22,7 @@ export default function Footer() {
       className={`border-t py-10 sm:py-12 transition-colors duration-300 ${
         isDark
           ? "bg-[#07080A] border-stone-800 text-stone-300"
-          : "bg-stone-100 border-stone-200 text-stone-600"
+          : "bg-[#EFEFEA] border-stone-200 text-stone-600"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

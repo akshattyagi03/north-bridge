@@ -162,8 +162,8 @@ export default function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className={`relative min-h-[calc(100vh-4rem)] min-h-[calc(100dvh-4rem)] md:h-[calc(100dvh-4rem)] flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 py-4 sm:py-6 overflow-hidden transition-colors duration-300 ${
-        isDark ? "bg-[#090A0D] text-white" : "bg-[#FAFAF9] text-[#18191B]"
+      className={`relative min-h-[calc(100vh-5rem)] min-h-[calc(100dvh-5rem)] md:h-[calc(100dvh-5rem)] flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 overflow-hidden transition-colors duration-300 ${
+        isDark ? "bg-[#090A0D] text-white" : "bg-[#F7F7F5] text-[#18191B]"
       }`}
     >
       {/* =========================================================================
