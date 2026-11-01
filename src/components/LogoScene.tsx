@@ -179,7 +179,7 @@ function useExtrudedLogo(scale: number): {
       );
       if (!path) continue;
 
-      const shapes = SVGLoader.createShapes(path);
+      const shapes = typeof path.toShapes === "function" ? path.toShapes() : SVGLoader.createShapes(path);
       if (!shapes.length) continue;
 
       const shape = shapes[0];

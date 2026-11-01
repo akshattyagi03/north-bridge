@@ -1,18 +1,19 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { ThemeProvider } from "../context/ThemeContext";
 
 export const metadata: Metadata = {
-  title: "North Bridge Tech — Digital Product Studio",
+  title: "NorthBridge Tech — Digital Product Studio | Innovative Tech. Lasting Impact.",
   description:
-    "Engineering high-performance web applications, scalable cloud infrastructure, mobile products, and bespoke UI/UX design systems.",
+    "We build digital solutions that move. From your idea to a scalable digital product: Web, Mobile, Cloud, UI/UX, Integrations & Digital Marketing.",
   icons: {
     icon: "/favicon.ico",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FFFFFF",
-  colorScheme: "light",
+  themeColor: "#090A0D",
+  colorScheme: "dark light",
 };
 
 export default function RootLayout({
@@ -21,9 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="bg-white text-[#141312] antialiased min-h-screen selection:bg-[#C42625] selection:text-white">
-        {children}
+    <html lang="en" className="scroll-smooth dark" data-theme="dark">
+      <body className="antialiased min-h-screen selection:bg-[#C52623] selection:text-white transition-colors duration-300">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

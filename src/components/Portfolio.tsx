@@ -1,77 +1,94 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { animate, stagger } from "animejs";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Sparkles, TrendingUp, Cpu } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
 import AnimatedHeading from "./AnimatedHeading";
 
-const CATEGORIES = ["All Works", "SaaS Platforms", "Mobile", "Cloud & Infra", "AI & Systems"];
+const CATEGORIES = ["All", "Web & SaaS", "Mobile", "Cloud", "UI/UX & Brand"];
 
 const PORTFOLIO_PROJECTS = [
   {
     id: "nexus-pay",
-    category: "SaaS Platforms",
-    name: "NexusPay Global",
-    tagline: "High-throughput fintech payment engine",
-    metrics: "$80M+ Monthly Vol",
-    description: "Next.js, Go microservices, and distributed PostgreSQL handling 1.2M daily transactions with zero downtime.",
-    tech: ["Next.js", "Golang", "PostgreSQL"],
+    code: "NBT-01",
+    category: "Web & SaaS",
+    name: "SaaS Billing & Dashboard",
+    tagline: "Subscription & invoice automation",
+    metrics: "Sub-20ms Engine",
+    description: "Modular subscription engine with automated billing and customer dashboards.",
+    tech: ["Next.js 16", "TypeScript", "Stripe API"],
     impact: "+340% Speed",
+    client: "NexusPay Global",
   },
   {
     id: "aura-health",
+    code: "NBT-02",
     category: "Mobile",
-    name: "Aura Health Ecosystem",
-    tagline: "HIPAA-compliant patient biometrics engine",
-    metrics: "99.99% Vital Sync",
-    description: "Offline-first mobile health ecosystem in React Native with Bluetooth telemetry and encrypted records.",
-    tech: ["React Native", "SQLite", "HIPAA Vault"],
-    impact: "64% Latency Drop",
+    name: "Cross-Platform Mobile App",
+    tagline: "Native iOS & Android experience",
+    metrics: "99.9% Sync SLA",
+    description: "Offline-first React Native mobile application with real-time telemetry notifications.",
+    tech: ["React Native", "Expo", "SQLite WAL"],
+    impact: "64% Faster Sync",
+    client: "Aura Health Ecosystem",
   },
   {
     id: "krypton-fleet",
-    category: "Cloud & Infra",
-    name: "Krypton Fleet Systems",
-    tagline: "Real-time fleet tracking & supply chain telemetry",
-    metrics: "15k+ Active Vehicles",
-    description: "High-concurrency event ingestion pipeline handling millions of geospatial coordinates per hour.",
-    tech: ["Kubernetes", "Redis", "Terraform"],
-    impact: "22% Fuel Savings",
+    code: "NBT-03",
+    category: "Cloud",
+    name: "Production Cloud Setup",
+    tagline: "Automated container orchestration",
+    metrics: "99.98% High Uptime",
+    description: "High-uptime AWS cloud environments with automated CI/CD and system telemetry.",
+    tech: ["AWS", "Docker", "CI/CD Pipeline"],
+    impact: "Zero Downtime",
+    client: "Krypton Fleet Systems",
   },
   {
     id: "synthetix-console",
-    category: "Cloud & Infra",
-    name: "Synthetix Cloud Console",
-    tagline: "Multi-cluster Kubernetes observability console",
-    metrics: "Sub-10ms UI Updates",
-    description: "Bespoke developer console with real-time log tailing, container crash diagnosis, and RBAC permissions.",
-    tech: ["React 19", "Three.js", "Docker"],
-    impact: "10x Faster Triage",
+    code: "NBT-04",
+    category: "UI/UX & Brand",
+    name: "Design Token System",
+    tagline: "Figma wireframes & prototypes",
+    metrics: "40+ Components",
+    description: "Full UI design system, interactive prototypes, and frictionless developer token handoff.",
+    tech: ["Figma", "Design Tokens", "Wireframing"],
+    impact: "10x Faster Handoff",
+    client: "Synthetix Labs",
   },
   {
     id: "veloce-store",
-    category: "SaaS Platforms",
-    name: "Veloce Commerce",
-    tagline: "Sub-second edge rendered commerce platform",
-    metrics: "100 Lighthouse Score",
-    description: "Lightning-fast headless store with instant search, tokenized checkout, and multi-warehouse sync.",
-    tech: ["Next.js 16", "Shopify API", "Redis"],
-    impact: "+48% Conversions",
+    code: "NBT-05",
+    category: "Web & SaaS",
+    name: "Headless E-Commerce",
+    tagline: "High-conversion web storefront",
+    metrics: "100 Lighthouse",
+    description: "Fast, responsive web store with instant checkout and modern faceted product filters.",
+    tech: ["Next.js", "Tailwind CSS", "Stripe Elements"],
+    impact: "+48% Conversion",
+    client: "Veloce Commerce",
   },
   {
-    id: "omnigraph-ai",
-    category: "AI & Systems",
-    name: "OmniGraph Enterprise AI",
-    tagline: "Knowledge graph & autonomous agent copilot",
-    metrics: "8.5M Vector Nodes",
-    description: "Enterprise agent system connecting unstructured documents with automated extraction and guardrails.",
-    tech: ["Python", "FastAPI", "pgvector"],
-    impact: "85% Auto-Resolved",
+    id: "brand-creative",
+    code: "NBT-06",
+    category: "UI/UX & Brand",
+    name: "Digital Brand Presence",
+    tagline: "Social assets & ad creatives",
+    metrics: "3.2x Engagement",
+    description: "Multi-channel visual identity guidelines, corporate decks, and high-conversion ad campaign assets.",
+    tech: ["Brand Identity", "Vector Graphics", "Ad Assets"],
+    impact: "+210% Reach",
+    client: "AeroDynamics Co",
   },
 ];
 
 export default function Portfolio() {
-  const [activeCategory, setActiveCategory] = useState("All Works");
+  const { theme, mounted: themeMounted } = useTheme();
+  const isDark = themeMounted ? theme === "dark" : true;
+
+  const [activeCategory, setActiveCategory] = useState("All");
   const sectionRef = useRef<HTMLDivElement>(null);
   const [animated, setAnimated] = useState(false);
 
@@ -86,7 +103,6 @@ export default function Portfolio() {
 
           const filterTabs = el.querySelector(".portfolio-filter-tabs");
           const cards = el.querySelectorAll(".portfolio-card-item");
-          const bottomBar = el.querySelector(".portfolio-bottom-bar");
 
           if (filterTabs) {
             animate(filterTabs, {
@@ -100,19 +116,9 @@ export default function Portfolio() {
           if (cards.length > 0) {
             animate(cards, {
               opacity: [0, 1],
-              translateY: [20, 0],
-              delay: stagger(45, { start: 150 }),
-              duration: 550,
-              ease: "outCubic",
-            });
-          }
-
-          if (bottomBar) {
-            animate(bottomBar, {
-              opacity: [0, 1],
-              translateY: [10, 0],
-              delay: 350,
-              duration: 550,
+              translateY: [16, 0],
+              delay: stagger(40, { start: 120 }),
+              duration: 500,
               ease: "outCubic",
             });
           }
@@ -126,103 +132,209 @@ export default function Portfolio() {
   }, [animated]);
 
   const filteredProjects =
-    activeCategory === "All Works"
+    activeCategory === "All"
       ? PORTFOLIO_PROJECTS
       : PORTFOLIO_PROJECTS.filter((p) => p.category === activeCategory);
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const scrollToContact = () => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section
       id="portfolio"
       ref={sectionRef}
-      className="min-h-[calc(100dvh-64px)] lg:h-[calc(100dvh-64px)] lg:max-h-[calc(100dvh-64px)] flex flex-col justify-between py-2 sm:py-3 lg:py-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-16 overflow-hidden border-b border-stone-200/70"
+      className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-16 transition-colors duration-300 ${
+        isDark ? "border-b border-stone-800/80 text-white" : "border-b border-stone-200 text-[#18191B]"
+      }`}
     >
       {/* Animated Heading on Scroll */}
       <AnimatedHeading
-        badge="Our Portfolio"
+        sectionNumber="05"
+        badge="PORTFOLIO • SELECTED WORKS"
         mainText="Selected Works &"
-        accentText="Digital Deployments."
-        subText="A curated index of production platforms, applications, and infrastructure engineered for category leaders and scale-ups."
+        accentText="Digital Products."
+        subText="Web applications, mobile platforms, and cloud deployments engineered with precision."
       />
 
       {/* Filter Tabs */}
-      <div className="portfolio-filter-tabs opacity-0 flex flex-wrap items-center gap-1.5 pt-1.5 pb-1 shrink-0">
-        {CATEGORIES.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            className={`px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide transition-all cursor-pointer ${
-              activeCategory === cat
-                ? "bg-stone-900 text-white shadow-2xs"
-                : "bg-white border border-stone-200 text-stone-600 hover:text-stone-900 hover:bg-stone-50"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
+      <div className="portfolio-filter-tabs opacity-0 flex flex-wrap items-center justify-between gap-3 pt-6 pb-4">
+        <div className="flex flex-wrap items-center gap-2">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-all cursor-pointer ${
+                activeCategory === cat
+                  ? "bg-[#C52623] text-white shadow-md shadow-red-950/40"
+                  : isDark
+                  ? "bg-white/5 border border-white/10 text-stone-300 hover:text-white hover:bg-white/10"
+                  : "bg-white border border-[#484944]/20 text-[#484944] hover:text-[#18191B] hover:bg-stone-50"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        <div className="hidden md:flex items-center gap-2">
+          <Image
+            src="/nbt-logo.png"
+            alt="NorthBridge Tech"
+            width={60}
+            height={32}
+            className={`h-4.5 w-auto object-contain ${isDark ? "brightness-110" : ""}`}
+          />
+          <span className="text-xs font-medium text-[#484944] font-mono">
+            Build • Connect • Scale
+          </span>
+        </div>
       </div>
 
+      {/* Flagship Enterprise Spotlight Showcase */}
+      {activeCategory === "All" && (
+        <div className="mb-8 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#18191B] via-[#242528] to-[#141517] text-white border border-[#484944]/30 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-full bg-gradient-to-l from-[#C52623]/25 via-[#C52623]/5 to-transparent pointer-events-none" />
+
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8 space-y-3.5">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="font-mono text-[10px] font-bold text-white bg-[#C52623] px-3 py-0.5 rounded-full shadow-xs">
+                  FLAGSHIP ARCHITECTURE • NBT-01
+                </span>
+                <span className="text-xs font-semibold text-stone-300">
+                  NexusPay Global Settlement Platform
+                </span>
+              </div>
+
+              <h3 className="text-xl sm:text-2xl font-extrabold text-white leading-tight">
+                High-Concurrency Billing Engine with Sub-18ms Settlement Latency
+              </h3>
+
+              <p className="text-xs sm:text-sm text-stone-300 leading-relaxed max-w-2xl font-normal">
+                Architected an event-driven payment orchestrator processing over 1.2M daily transactions. Replaced legacy database bottlenecks with distributed caching and fault-tolerant webhook dispatchers.
+              </p>
+
+              {/* Architecture Tech Pills */}
+              <div className="flex flex-wrap items-center gap-2 pt-1">
+                {["Next.js 16", "Go Microservices", "Kafka Streams", "Redis Caching", "Stripe API"].map((t) => (
+                  <span key={t} className="text-[10px] px-2.5 py-1 rounded-full bg-white/10 border border-white/15 text-stone-200 font-mono">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Metrics Cockpit Block */}
+            <div className="lg:col-span-4 bg-black/60 p-5 sm:p-6 rounded-2xl border border-white/10 space-y-3.5 text-center sm:text-left">
+              <div className="flex items-center justify-between pb-2 border-b border-white/10 text-xs">
+                <span className="text-stone-400 font-mono text-[11px]">PRODUCTION IMPACT</span>
+                <span className="text-[#C52623] font-bold font-mono">+340% SPEED</span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 text-center">
+                <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+                  <span className="text-2xl font-extrabold text-white block">16ms</span>
+                  <span className="text-[10px] text-stone-400 font-mono">P99 LATENCY</span>
+                </div>
+                <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+                  <span className="text-2xl font-extrabold text-[#C52623] block">100%</span>
+                  <span className="text-[10px] text-stone-400 font-mono">UPTIME SLA</span>
+                </div>
+              </div>
+
+              <button
+                onClick={scrollToContact}
+                className="w-full py-2.5 px-4 rounded-xl bg-[#C52623] hover:bg-[#aa1f1c] text-white text-xs font-bold transition-all shadow-md inline-flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>Request Case Study Brief</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Projects 3x2 Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3 my-auto py-1.5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 py-2">
         {filteredProjects.map((project) => (
           <div
             key={project.id}
-            onClick={() => scrollTo("projects")}
-            className="portfolio-card-item opacity-0 group p-3 sm:p-3.5 rounded-xl bg-white border border-stone-200/90 hover:border-stone-400 transition-all shadow-2xs hover:shadow-xs flex flex-col justify-between cursor-pointer"
+            onClick={scrollToContact}
+            className={`portfolio-card-item opacity-0 group p-6 rounded-2xl border transition-all duration-300 flex flex-col justify-between cursor-pointer relative overflow-hidden hover:-translate-y-1.5 ${
+              isDark
+                ? "bg-[#121316] border-white/10 text-white hover:border-[#C52623] hover:shadow-2xl hover:shadow-red-950/20"
+                : "bg-white border-[#484944]/15 text-[#18191B] hover:border-[#C52623] hover:shadow-xl"
+            }`}
           >
+            {/* Top red micro-accent on hover */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#C52623] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
             <div>
-              <div className="flex items-center justify-between pb-1.5 border-b border-stone-100 mb-1.5">
-                <span className="text-[10px] font-semibold text-stone-500">
-                  {project.category}
-                </span>
-                <span className="text-[10px] font-bold text-[#C42625] bg-red-50/70 px-2 py-0.5 rounded-full">
+              <div
+                className={`flex items-center justify-between pb-3 border-b mb-3 ${
+                  isDark ? "border-white/10" : "border-stone-100"
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-[10px] font-bold text-[#C52623] bg-[#C52623]/10 px-2.5 py-0.5 rounded">
+                    {project.code}
+                  </span>
+                  <span className={`text-xs font-semibold ${isDark ? "text-stone-400" : "text-[#484944]"}`}>
+                    {project.category}
+                  </span>
+                </div>
+                <span className="text-[10px] font-bold text-[#C52623] bg-red-50/80 border border-red-200/80 px-2.5 py-0.5 rounded-full font-mono">
                   {project.impact}
                 </span>
               </div>
 
-              <h3 className="text-xs sm:text-sm font-bold text-stone-900 mb-0.5 group-hover:text-[#C42625] transition-colors truncate">
+              <h3
+                className={`text-base font-bold mb-1 group-hover:text-[#C52623] transition-colors ${
+                  isDark ? "text-white" : "text-[#18191B]"
+                }`}
+              >
                 {project.name}
               </h3>
-              <p className="text-[10px] text-stone-500 mb-1 font-medium truncate">
-                {project.tagline}
+              <p className={`text-xs mb-2.5 font-medium ${isDark ? "text-stone-400" : "text-[#484944]"}`}>
+                {project.tagline} • <span className={isDark ? "text-stone-200 font-semibold" : "text-[#18191B] font-semibold"}>{project.client}</span>
               </p>
-              <p className="text-[11px] text-stone-600 leading-snug mb-2 font-normal line-clamp-2">
+              <p className={`text-xs leading-relaxed font-normal mb-4 ${isDark ? "text-stone-300" : "text-[#484944]"}`}>
                 {project.description}
               </p>
+
+              {/* Tech Stack Chips */}
+              <div className="flex flex-wrap gap-1.5 mb-4">
+                {project.tech.map((t) => (
+                  <span
+                    key={t}
+                    className={`text-[10px] px-2 py-0.5 rounded-md border font-medium ${
+                      isDark
+                        ? "bg-white/5 border-white/10 text-stone-300"
+                        : "bg-stone-100 border-[#484944]/15 text-[#484944]"
+                    }`}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <div>
-              <div className="flex items-center justify-between text-[11px] font-medium text-stone-800 p-1.5 rounded-lg bg-stone-50 mb-1.5">
-                <span className="text-stone-500 text-[10px]">Scale:</span>
-                <span className="font-bold text-stone-900 text-[11px]">{project.metrics}</span>
-              </div>
-
-              <div className="flex items-center justify-between text-[11px] font-semibold text-stone-900 pt-0.5">
-                <span className="text-[10px] text-stone-500 font-normal">
-                  {project.tech.slice(0, 2).join(" • ")}
-                </span>
-                <span className="inline-flex items-center gap-0.5 text-[#C42625] text-[11px]">
-                  <span>Inspect Case</span>
-                  <ArrowUpRight className="w-3 h-3" />
-                </span>
-              </div>
+            <div
+              className={`pt-3 border-t flex items-center justify-between text-xs ${
+                isDark ? "border-white/10" : "border-stone-100"
+              }`}
+            >
+              <span className={`text-[11px] font-mono font-semibold ${isDark ? "text-stone-400" : "text-[#484944]"}`}>
+                {project.metrics}
+              </span>
+              <span className="inline-flex items-center gap-1 text-[#C52623] font-bold group-hover:translate-x-1 transition-transform text-xs">
+                <span>Inquire Scope</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </span>
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="portfolio-bottom-bar opacity-0 rounded-xl border border-stone-200/90 bg-stone-50/70 p-2 sm:p-2.5 flex flex-col sm:flex-row sm:items-center justify-between text-xs text-stone-500 gap-1.5 shrink-0">
-        <span className="text-[11px]">Displaying production systems engineered across fintech, health, and cloud infrastructure.</span>
-        <button
-          onClick={() => scrollTo("contact")}
-          className="font-semibold text-stone-900 hover:text-[#C42625] transition-colors cursor-pointer self-start sm:self-auto text-xs"
-        >
-          Discuss Your Project Architecture →
-        </button>
       </div>
     </section>
   );

@@ -36,7 +36,7 @@ export default function AnimeGrid({
       ],
       backgroundColor: [
         { to: "#8A8683", duration: 180 },
-        { to: "#C42625", duration: 320 },
+        { to: "#C52623", duration: 320 },
         { to: "#D3D1CE", duration: 400 },
       ],
       opacity: [
@@ -66,10 +66,10 @@ export default function AnimeGrid({
       {/* Top telemetry bar */}
       <div className="flex items-center justify-between pb-3 border-b border-[#ECEAE8] text-[11px] font-mono text-[#8A8683]">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#C42625] animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-[#C52623] animate-pulse" />
           <span className="text-[#141312] font-semibold">ANIME.JS V4 RIPPLE MATRIX</span>
         </div>
-        <div className="text-[10px] text-[#C42625] tracking-wider uppercase">
+        <div className="text-[10px] text-[#C52623] tracking-wider uppercase">
           {activeCoord}
         </div>
       </div>

@@ -1,164 +1,159 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { animate, stagger } from "animejs";
-import { ArrowRight, CheckCircle2, Zap, Shield } from "lucide-react";
-import LogoScene from "./LogoScene";
-
-const METRICS = [
-  { value: "45+", label: "Products Launched", sub: "Enterprise web, SaaS, & mobile" },
-  { value: "99.98%", label: "System Availability", sub: "Production uptime standard" },
-  { value: "< 30ms", label: "Edge Response", sub: "Global distributed performance" },
-  { value: "100%", label: "Delivery Precision", sub: "On-schedule milestone completion" },
-];
-
-const INDUSTRIES = [
-  "Fintech & Payments",
-  "Digital Health",
-  "Global Logistics",
-  "Enterprise SaaS",
-  "Machine Intelligence",
-];
+import { useEffect, useRef, useState, useCallback } from "react";
+import Image from "next/image";
+import { animate } from "animejs";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
+import SurpriseLogoExperience from "./SurpriseLogoExperience";
 
 export default function Hero() {
+  const { theme, mounted: themeMounted } = useTheme();
+  const isDark = themeMounted ? theme === "dark" : true;
+
+  const [showSurprise, setShowSurprise] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
-  const [animated, setAnimated] = useState(false);
+  const animatedRef = useRef(false);
+  const [entranceDone, setEntranceDone] = useState(false);
+
+  const runEntranceAnimation = useCallback(() => {
+    if (animatedRef.current) return;
+    const el = heroRef.current;
+    if (!el) return;
+
+    animatedRef.current = true;
+
+    const leftWing = el.querySelector(".hero-wing-left");
+    const rightWing = el.querySelector(".hero-wing-right");
+    const logoCenter = el.querySelector(".hero-logo-center");
+    const logoAura = el.querySelector(".hero-logo-aura");
+    const sloganPart1 = el.querySelector(".hero-slogan-part-1");
+    const sloganPart2 = el.querySelector(".hero-slogan-part-2");
+    const ctaWrap = el.querySelector(".hero-cta-wrap");
+
+    // 1. Left Wing slides in from the left
+    if (leftWing) {
+      animate(leftWing, {
+        opacity: [0, 1],
+        translateX: [-70, 0],
+        scale: [0.92, 1],
+        duration: 900,
+        ease: "outCubic",
+      });
+    }
+
+    // 2. Right Wing slides in from the right
+    if (rightWing) {
+      animate(rightWing, {
+        opacity: [0, 1],
+        translateX: [70, 0],
+        scale: [0.92, 1],
+        duration: 900,
+        ease: "outCubic",
+      });
+    }
+
+    // 3. Central Logo pops in with 3D spring scale & position
+    if (logoCenter) {
+      animate(logoCenter, {
+        opacity: [0, 1],
+        scale: [0.82, 1],
+        translateY: [-28, 0],
+        duration: 850,
+        ease: "outBack(1.4)",
+        complete: () => {
+          setEntranceDone(true);
+        },
+      });
+    }
+
+    // 4. Logo Radiant Aura blooms
+    if (logoAura) {
+      animate(logoAura, {
+        opacity: [0, 1],
+        scale: [0.6, 1],
+        duration: 1000,
+        ease: "outCubic",
+      });
+    }
+
+    // 5. Slogan Part 1 ("One North.") slides up smoothly
+    if (sloganPart1) {
+      animate(sloganPart1, {
+        opacity: [0, 1],
+        translateY: [22, 0],
+        delay: 220,
+        duration: 700,
+        ease: "outCubic",
+      });
+    }
+
+    // 6. Slogan Part 2 ("Infinite Digital Directions") slides up smoothly
+    if (sloganPart2) {
+      animate(sloganPart2, {
+        opacity: [0, 1],
+        translateY: [22, 0],
+        delay: 360,
+        duration: 700,
+        ease: "outCubic",
+      });
+    }
+
+    // 7. Glowing CTAs pop in with spring bounce
+    if (ctaWrap) {
+      animate(ctaWrap, {
+        opacity: [0, 1],
+        translateY: [18, 0],
+        scale: [0.92, 1],
+        delay: 500,
+        duration: 650,
+        ease: "outBack(1.3)",
+      });
+    }
+
+    // 8. Direct Access quick navigation pills
+    const directAccess = el.querySelector(".hero-direct-access");
+    if (directAccess) {
+      animate(directAccess, {
+        opacity: [0, 1],
+        translateY: [15, 0],
+        delay: 620,
+        duration: 600,
+        ease: "outCubic",
+      });
+    }
+  }, []);
 
   useEffect(() => {
-    const el = heroRef.current;
-    if (!el || typeof IntersectionObserver === "undefined") return;
+    const handleSplashFade = () => {
+      // Delay slightly so the fade-out of the splash screen reveals the motion in progress
+      setTimeout(runEntranceAnimation, 120);
+    };
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !animated) {
-          setAnimated(true);
+    if (typeof window !== "undefined") {
+      // Check if splash screen already faded
+      if (
+        (window as unknown as { __nbt_splash_faded?: boolean }).__nbt_splash_faded ||
+        (window as unknown as { __nbt_splash_done?: boolean }).__nbt_splash_done
+      ) {
+        runEntranceAnimation();
+      } else {
+        window.addEventListener("nbt-splash-fade", handleSplashFade, { once: true });
+        window.addEventListener("nbt-splash-done", runEntranceAnimation, { once: true });
+      }
 
-          const words = el.querySelectorAll(".hero-word");
-          const accentWord = el.querySelector(".hero-accent");
-          const accentLine = el.querySelector(".hero-accent-line");
-          const badge = el.querySelector(".hero-badge");
-          const copy = el.querySelector(".hero-copy");
-          const actions = el.querySelector(".hero-actions");
-          const checklist = el.querySelectorAll(".hero-check-item");
-          const visual = el.querySelector(".hero-visual");
-          const floatingCards = el.querySelectorAll(".hero-floating-card");
-          const metrics = el.querySelectorAll(".hero-metric-item");
-          const industryBand = el.querySelector(".hero-industry-band");
+      // Fallback timer: ensure entrance animation ALWAYS fires even if splash is skipped or cached
+      const fallbackTimer = setTimeout(() => {
+        runEntranceAnimation();
+      }, 1600);
 
-          if (badge) {
-            animate(badge, {
-              opacity: [0, 1],
-              translateY: [-8, 0],
-              duration: 450,
-              ease: "outCubic",
-            });
-          }
-
-          if (words.length > 0) {
-            animate(words, {
-              opacity: [0, 1],
-              translateY: [20, 0],
-              delay: stagger(40, { start: 80 }),
-              duration: 600,
-              ease: "outCubic",
-            });
-          }
-
-          if (accentWord) {
-            animate(accentWord, {
-              opacity: [0, 1],
-              translateY: [18, 0],
-              delay: 160,
-              duration: 650,
-              ease: "outCubic",
-            });
-          }
-
-          if (accentLine) {
-            animate(accentLine, {
-              scaleX: [0, 1],
-              delay: 350,
-              duration: 600,
-              ease: "outExpo",
-            });
-          }
-
-          if (copy) {
-            animate(copy, {
-              opacity: [0, 1],
-              translateY: [15, 0],
-              delay: 200,
-              duration: 550,
-              ease: "outCubic",
-            });
-          }
-
-          if (actions) {
-            animate(actions, {
-              opacity: [0, 1],
-              translateY: [12, 0],
-              delay: 260,
-              duration: 550,
-              ease: "outCubic",
-            });
-          }
-
-          if (checklist.length > 0) {
-            animate(checklist, {
-              opacity: [0, 1],
-              translateY: [10, 0],
-              delay: stagger(50, { start: 300 }),
-              duration: 500,
-              ease: "outCubic",
-            });
-          }
-
-          if (visual) {
-            animate(visual, {
-              opacity: [0, 1],
-              scale: [0.97, 1],
-              delay: 200,
-              duration: 700,
-              ease: "outCubic",
-            });
-          }
-
-          if (floatingCards.length > 0) {
-            animate(floatingCards, {
-              opacity: [0, 1],
-              translateY: [15, 0],
-              delay: stagger(80, { start: 350 }),
-              duration: 600,
-              ease: "outCubic",
-            });
-          }
-
-          if (industryBand) {
-            animate(industryBand, {
-              opacity: [0, 1],
-              delay: 350,
-              duration: 500,
-              ease: "outCubic",
-            });
-          }
-
-          if (metrics.length > 0) {
-            animate(metrics, {
-              opacity: [0, 1],
-              translateY: [15, 0],
-              delay: stagger(50, { start: 400 }),
-              duration: 550,
-              ease: "outCubic",
-            });
-          }
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [animated]);
+      return () => {
+        window.removeEventListener("nbt-splash-fade", handleSplashFade);
+        window.removeEventListener("nbt-splash-done", runEntranceAnimation);
+        clearTimeout(fallbackTimer);
+      };
+    }
+  }, [runEntranceAnimation]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -168,167 +163,173 @@ export default function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="min-h-[calc(100dvh-64px)] lg:h-[calc(100dvh-64px)] lg:max-h-[calc(100dvh-64px)] flex flex-col justify-between py-2 sm:py-3 lg:py-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-16 overflow-hidden border-b border-stone-200/70"
+      className={`relative pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden transition-colors duration-300 ${
+        isDark ? "bg-[#090A0D] text-white" : "bg-[#FAFAF9] text-[#18191B]"
+      }`}
     >
-      {/* Top Main Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center my-auto">
-        {/* Left Column (Editorial Copy) */}
-        <div className="lg:col-span-7 space-y-3 sm:space-y-3.5">
-          {/* Studio Badge & Live Status */}
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="hero-badge opacity-0 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-stone-100 border border-stone-200 text-[11px] text-stone-700">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C42625] animate-pulse" />
-              <span className="font-semibold text-stone-900">
-                Digital Product & Architecture Studio
-              </span>
-            </div>
+      {/* =========================================================================
+          LEFT & RIGHT VIVID CRIMSON GEOMETRIC WINGS (Screenshots 4 & 5)
+         ========================================================================= */}
+      {/* Left Wing Shapes */}
+      <div className="hero-wing-left opacity-0 absolute top-12 -left-16 sm:-left-12 w-64 sm:w-80 lg:w-96 h-[550px] pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[#C52623]/25 blur-3xl rounded-full" />
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-[#851513] via-[#C52623] to-transparent opacity-90"
+          style={{
+            clipPath: "polygon(0 0, 100% 35%, 100% 65%, 0 100%, 0 65%, 55% 50%, 0 35%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-[#C52623] via-[#ff4a47] to-transparent opacity-75"
+          style={{
+            clipPath: "polygon(20% 15%, 85% 42%, 85% 58%, 20% 85%, 28% 70%, 70% 50%, 28% 30%)",
+          }}
+        />
+      </div>
 
-            <div className="hero-badge opacity-0 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-stone-50 border border-stone-200 text-[10px] text-stone-500 font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              <span>Available for Select Q4 / Q1 Engagements</span>
-            </div>
+      {/* Right Wing Shapes */}
+      <div className="hero-wing-right opacity-0 absolute top-12 -right-16 sm:-right-12 w-64 sm:w-80 lg:w-96 h-[550px] pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[#C52623]/25 blur-3xl rounded-full" />
+        <div
+          className="absolute inset-0 bg-gradient-to-bl from-[#851513] via-[#C52623] to-transparent opacity-90"
+          style={{
+            clipPath: "polygon(100% 0, 0 35%, 0 65%, 100% 100%, 100% 65%, 45% 50%, 100% 35%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-l from-[#C52623] via-[#ff4a47] to-transparent opacity-75"
+          style={{
+            clipPath: "polygon(80% 15%, 15% 42%, 15% 58%, 80% 85%, 72% 70%, 30% 50%, 72% 30%)",
+          }}
+        />
+      </div>
+
+      {/* Subtle Texture */}
+      <div className="absolute inset-0 bg-radial-[circle_at_center,transparent_30%,currentColor_95%] opacity-5 pointer-events-none z-0" />
+
+      {/* Main Content (Centered) */}
+      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center">
+        {/* =========================================================================
+            CENTERED PROMINENT 3D LOGO CENTERPIECE (Refined, Well-Proportioned Dimensions)
+           ========================================================================= */}
+        <div className="hero-logo-center opacity-0 mb-3 sm:mb-4 flex items-center justify-center">
+          <div
+            className={`relative group cursor-pointer transition-transform duration-500 hover:scale-[1.03] ${
+              entranceDone ? "animate-hero-float" : ""
+            }`}
+          >
+            {/* Multi-layered 3D Ambient Radiant Aura */}
+            <div className="hero-logo-aura opacity-0 absolute -inset-5 sm:-inset-8 bg-radial-[circle,rgba(197,38,35,0.45)_0%,rgba(197,38,35,0.12)_45%,transparent_75%] rounded-full blur-xl pointer-events-none" />
+            <div className="absolute -inset-2 bg-gradient-to-b from-[#C52623]/25 via-transparent to-transparent rounded-2xl blur-sm pointer-events-none opacity-80" />
+
+            {/* Flagship Brand Logo with Refined Dimensions & Optical Clarity */}
+            <Image
+              src="/nbt-logo.png"
+              alt="NorthBridge Tech"
+              width={340}
+              height={190}
+              sizes="(max-width: 640px) 180px, (max-width: 1024px) 230px, 260px"
+              className={`w-44 sm:w-52 md:w-60 lg:w-[260px] h-auto object-contain transition-all duration-300 ${
+                isDark
+                  ? "brightness-[1.18] contrast-[1.08] drop-shadow-[0_10px_28px_rgba(197,38,35,0.55)] drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)]"
+                  : "drop-shadow-[0_10px_22px_rgba(197,38,35,0.22)] drop-shadow-[0_3px_8px_rgba(0,0,0,0.06)]"
+              }`}
+              priority
+            />
           </div>
+        </div>
 
-          {/* Kinetic Headline */}
-          <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-extrabold tracking-tight text-stone-900 leading-[1.08]">
-            <span className="inline-block overflow-hidden">
-              <span className="hero-word opacity-0 inline-block">Ideas,</span>
-            </span>{" "}
-            <span className="hero-accent opacity-0 text-[#C42625] relative inline-block">
-              connected.
-              <span className="hero-accent-line absolute left-0 -bottom-0.5 w-full h-[2.5px] bg-[#C42625]/40 origin-left scale-x-0 rounded-full" />
-            </span>
-            <br />
-            <span className="inline-block overflow-hidden">
-              <span className="hero-word opacity-0 inline-block">Possibilities,</span>
-            </span>{" "}
-            <span className="inline-block overflow-hidden">
-              <span className="hero-word opacity-0 inline-block text-stone-400">built.</span>
-            </span>
-          </h1>
+        {/* =========================================================================
+            SLOGAN (Shortened, Sleek & Executive Proportions)
+           ========================================================================= */}
+        <h1
+          className={`hero-slogan text-lg sm:text-xl md:text-2xl lg:text-[28px] font-black tracking-tight leading-snug max-w-2xl mx-auto mt-3 sm:mt-4 mb-6 sm:mb-8 transition-colors duration-300 ${
+            isDark ? "text-white" : "text-[#18191B]"
+          }`}
+        >
+          <span className="hero-slogan-part-1 opacity-0 inline-block">
+            One North.&nbsp;
+          </span>
+          <span className="hero-slogan-part-2 opacity-0 text-[#C52623] inline-block drop-shadow-[0_0_20px_rgba(197,38,35,0.35)]">
+            Infinite Digital Directions
+          </span>
+        </h1>
 
-          {/* Description */}
-          <p className="hero-copy opacity-0 text-xs sm:text-sm text-stone-600 max-w-lg leading-relaxed font-normal line-clamp-3">
-            We partner with ambitious enterprises and high-growth ventures to engineer high-throughput web platforms, cross-platform mobile apps, resilient cloud architectures, and bespoke design systems.
-          </p>
-
-          {/* Actions */}
-          <div className="hero-actions opacity-0 flex flex-wrap items-center gap-3 pt-0.5">
-            <button
-              onClick={() => scrollTo("portfolio")}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#C42625] hover:bg-[#a81f1e] text-white text-xs font-semibold tracking-wide transition-all shadow-xs hover:shadow-md hover:shadow-[#C42625]/25 group cursor-pointer"
-            >
-              <span>Explore Selected Work</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </button>
+        {/* =========================================================================
+            GLOWING CTA BUTTONS
+           ========================================================================= */}
+        <div className="hero-cta-wrap opacity-0 relative mb-5 sm:mb-7 flex flex-wrap items-center justify-center gap-4">
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-[#C52623] rounded-full blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500" />
 
             <button
               onClick={() => scrollTo("contact")}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-stone-50 text-stone-800 border border-stone-300 hover:border-stone-400 text-xs font-semibold tracking-wide transition-all shadow-2xs cursor-pointer"
+              className="relative px-7 py-3.5 rounded-full bg-gradient-to-r from-[#18191B] via-[#242528] to-[#18191B] border border-[#C52623] hover:border-red-400 text-white text-xs sm:text-sm font-bold tracking-wide transition-all inline-flex items-center gap-2 shadow-2xl cursor-pointer"
             >
-              <span>Schedule a Consultation</span>
+              <span>Book a Free Demo</span>
+              <ArrowRight className="w-4 h-4 text-[#C52623] group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
-          {/* Credibility highlights */}
-          <div className="flex flex-wrap items-center gap-4 sm:gap-5 text-xs text-stone-500 font-medium pt-0.5">
-            <span className="hero-check-item opacity-0 flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#C42625]" />
-              Full-Stack Architecture
-            </span>
-            <span className="hero-check-item opacity-0 flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#C42625]" />
-              Cloud-Native Scale
-            </span>
-            <span className="hero-check-item opacity-0 flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#C42625]" />
-              Enterprise UI/UX
-            </span>
-          </div>
-
-          {/* Target Domains Bar */}
-          <div className="hero-industry-band opacity-0 pt-2 border-t border-stone-200/70 flex flex-wrap items-center gap-1.5 text-xs text-stone-500">
-            <span className="font-semibold text-stone-700 text-[11px]">Specialized:</span>
-            {INDUSTRIES.map((ind, i) => (
-              <span
-                key={i}
-                className="px-2 py-0.5 rounded-full bg-stone-100 text-stone-600 font-medium text-[10px]"
-              >
-                {ind}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Right Column (Sculptural 3D Centerpiece) */}
-        <div className="hero-visual opacity-0 lg:col-span-5 relative">
-          <div className="relative rounded-2xl border border-stone-200/90 bg-gradient-to-b from-stone-50/60 via-white to-stone-50/40 p-3 sm:p-4 shadow-2xs overflow-hidden">
-            {/* Top Bar of Sculpture Card */}
-            <div className="w-full flex items-center justify-between pb-2 border-b border-stone-100 text-[11px] text-stone-400 font-medium">
-              <span className="flex items-center gap-1.5 text-stone-700 font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C42625]" />
-                Architectural Symbol
-              </span>
-              <span className="text-stone-400 text-[10px]">North Bridge Tech Studio</span>
-            </div>
-
-            {/* 3D Scene */}
-            <div className="relative my-1">
-              <LogoScene className="h-[180px] sm:h-[200px] lg:h-[210px]" />
-
-              {/* Floating Architectural Badge Top-Right */}
-              <div className="hero-floating-card opacity-0 absolute top-2 right-1 hidden sm:flex items-center gap-1.5 p-2 rounded-lg bg-white/95 backdrop-blur-md border border-stone-200 shadow-2xs pointer-events-none">
-                <div className="w-5 h-5 rounded-md bg-red-50 text-[#C42625] flex items-center justify-center font-bold text-xs">
-                  <Zap className="w-3 h-3" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-bold text-stone-900 block leading-tight">Next.js 16 & React 19</span>
-                  <span className="text-[9px] text-stone-500 leading-tight">Edge-First Architecture</span>
-                </div>
-              </div>
-
-              {/* Floating Architectural Badge Bottom-Left */}
-              <div className="hero-floating-card opacity-0 absolute bottom-3 left-1 hidden sm:flex items-center gap-1.5 p-2 rounded-lg bg-white/95 backdrop-blur-md border border-stone-200 shadow-2xs pointer-events-none">
-                <div className="w-5 h-5 rounded-md bg-stone-100 text-stone-800 flex items-center justify-center font-bold text-xs">
-                  <Shield className="w-3 h-3 text-[#C42625]" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-bold text-stone-900 block leading-tight">Sub-20ms Latency</span>
-                  <span className="text-[9px] text-stone-500 leading-tight">99.98% High Availability</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Caption */}
-            <div className="w-full pt-2 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-400">
-              <span className="text-[10px]">Interactive 3D geometry</span>
-              <span className="text-stone-600 font-medium text-[10px]">Tilt with pointer</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Elevated Bottom Metrics Ribbon */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 p-3 sm:p-3.5 rounded-xl bg-stone-50/80 border border-stone-200/90 shadow-2xs shrink-0">
-        {METRICS.map((metric, i) => (
-          <div
-            key={i}
-            className="hero-metric-item opacity-0 flex flex-col space-y-0.5 p-1.5 rounded-lg hover:bg-white transition-colors"
+          {/* SURPRISE ME 3D LOGO ANIMATION BUTTON */}
+          <button
+            onClick={() => setShowSurprise(true)}
+            className={`group px-6 py-3.5 rounded-full border transition-all duration-300 inline-flex items-center gap-2.5 text-xs sm:text-sm font-bold tracking-wide shadow-xl cursor-pointer backdrop-blur-md hover:scale-105 active:scale-95 ${
+              isDark
+                ? "border-red-500/60 bg-red-950/30 hover:bg-[#C52623] text-white hover:text-white hover:border-red-400 shadow-red-950/50"
+                : "border-[#C52623] bg-red-50/80 hover:bg-[#C52623] text-[#C52623] hover:text-white shadow-red-100"
+            }`}
+            title="Experience the Anime.js 3D Logo Animation"
+            aria-label="Surprise Me - 3D Logo Animation"
           >
-            <div className="flex items-baseline gap-1">
-              <span className="text-xl sm:text-2xl font-extrabold text-stone-900 tracking-tight leading-none">
-                {metric.value}
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C42625] mb-0.5" />
-            </div>
-            <span className="text-xs font-semibold text-stone-800 truncate">
-              {metric.label}
+            <Sparkles className="w-4 h-4 text-[#C52623] group-hover:text-white group-hover:rotate-12 transition-transform duration-300" />
+            <span>Surprise Me</span>
+            <span
+              className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded transition-colors ${
+                isDark
+                  ? "bg-white/10 group-hover:bg-black/30 text-stone-200 group-hover:text-white"
+                  : "bg-red-100 group-hover:bg-black/20 text-[#C52623] group-hover:text-white"
+              }`}
+            >
+              3D
             </span>
-            <span className="text-[11px] text-stone-500 truncate">
-              {metric.sub}
-            </span>
-          </div>
-        ))}
+          </button>
+        </div>
+
+        {/* =========================================================================
+            DIRECT ACCESS QUICK NAVIGATION BUTTONS
+           ========================================================================= */}
+        <div className="hero-direct-access opacity-0 flex flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto pt-2 pb-6">
+          <span className="text-[11px] font-mono font-bold text-stone-500 uppercase tracking-wider mr-1 hidden sm:inline">
+            Direct Access:
+          </span>
+          {[
+            { label: "Who We Are", target: "about" },
+            { label: "Our Services", target: "services" },
+            { label: "The Pillars", target: "pillars" },
+            { label: "How We Solve", target: "process" },
+            { label: "Your Direction", target: "orbit" },
+            { label: "Contact Us", target: "contact" },
+          ].map((item) => (
+            <button
+              key={item.target}
+              onClick={() => scrollTo(item.target)}
+              className={`px-3.5 py-1.5 rounded-full border text-xs font-mono transition-all duration-300 cursor-pointer ${
+                isDark
+                  ? "bg-white/5 border-white/10 text-stone-300 hover:text-white hover:border-[#C52623] hover:bg-[#C52623]/15 shadow-xs"
+                  : "bg-white border-stone-200 text-stone-700 hover:text-stone-900 hover:border-[#C52623] hover:bg-red-50/50 shadow-xs"
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+
+        {/* 3D Anime.js Three.js Adapter Logo Animation Modal Experience */}
+        <SurpriseLogoExperience
+          isOpen={showSurprise}
+          onClose={() => setShowSurprise(false)}
+        />
       </div>
     </section>
   );

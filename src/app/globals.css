@@ -4,15 +4,16 @@
   --paper: #FFFFFF;
   --paper-subtle: #FAFAF9;
   --paper-card: #FFFFFF;
-  --ink: #141312;
-  --ink-secondary: #57534E;
-  --ink-muted: #8A8683;
-  --crimson: #C42625;
-  --crimson-hover: #A81F1E;
-  --crimson-light: rgba(196, 38, 37, 0.06);
-  --stone: #8A8683;
-  --border: #E7E5E4;
-  --border-light: #F0EEEB;
+  --ink: #18191B;
+  --ink-secondary: #484944;
+  --ink-muted: #72746E;
+  --crimson: #C52623;
+  --crimson-hover: #AA1F1C;
+  --crimson-light: rgba(197, 38, 35, 0.08);
+  --charcoal: #484944;
+  --charcoal-light: #5E6059;
+  --border: #E5E7EB;
+  --border-light: #F0F1F3;
 }
 
 * {
@@ -42,8 +43,8 @@ body::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: radial-gradient(circle at 90% 10%, rgba(196, 38, 37, 0.025), transparent 40%),
-              radial-gradient(circle at 10% 80%, rgba(138, 134, 131, 0.03), transparent 45%);
+  background: radial-gradient(circle at 90% 10%, rgba(197, 38, 35, 0.03), transparent 40%),
+              radial-gradient(circle at 10% 80%, rgba(72, 73, 68, 0.04), transparent 45%);
 }
 
 /* Elegant scrollbar */
@@ -57,17 +58,17 @@ body::before {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D6D3D1;
+  background: #D1D5DB;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8A8683;
+  background: #484944;
 }
 
 /* Selection highlight */
 ::selection {
-  background-color: #C42625;
+  background-color: #C52623;
   color: #FFFFFF;
 }
 
@@ -75,3 +76,74 @@ body::before {
 h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.025em;
 }
+
+/* Carbon mesh texture pattern from reference images */
+.bg-carbon-mesh {
+  background-color: #121315;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0),
+    radial-gradient(rgba(197, 38, 35, 0.06) 1px, transparent 0);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+}
+
+/* Subtle tech grid for light sections */
+.bg-tech-grid {
+  background-image: 
+    linear-gradient(to right, rgba(72, 73, 68, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(72, 73, 68, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Aerodynamic ribbon glow */
+.crimson-glow {
+  box-shadow: 0 12px 36px -8px rgba(197, 38, 35, 0.35);
+}
+
+/* Subtle continuous floating motion for Hero logo */
+@keyframes heroLogoFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.animate-hero-float {
+  animation: heroLogoFloat 6s ease-in-out infinite;
+}
+
+/* Continuous Orbital Motion for "Your Say is our Direction" */
+@keyframes orbitRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitCounterRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate-orbit-track {
+  animation: orbitRotate 32s linear infinite;
+}
+
+.animate-orbit-node {
+  animation: orbitCounterRotate 32s linear infinite;
+}
+
+.orbit-paused {
+  animation-play-state: paused !important;
+}
+
+
+
