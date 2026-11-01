@@ -123,11 +123,9 @@ export default function Pillars() {
     >
       {/* Animated Heading on Scroll */}
       <AnimatedHeading
-        sectionNumber="04"
-        badge="OUR PILLARS • STRUCTURAL FOUNDATIONS"
         mainText="Our Pillars."
-        accentText="Supporting The North Bridge."
-        subText="Architectural column formations bearing the overhead digital bridge above them."
+        accentText="Engineering Foundations."
+        subText="The core principles that support every platform we build."
       />
 
       {/* =========================================================================
@@ -153,41 +151,20 @@ export default function Pillars() {
                 <Layers className="w-4 h-4" />
               </div>
               <div>
-                <div className="flex items-center gap-1.5">
-                  <span className="font-mono text-[9px] font-bold text-[#ff4a47] bg-white/10 px-2 py-0.5 rounded uppercase tracking-wider">
-                    THE NORTH BRIDGE OVERHEAD DECK
-                  </span>
-                  <span className="text-[9px] font-mono text-stone-400 hidden md:inline">
-                    STRUCTURAL LOAD BEARING
-                  </span>
-                </div>
-                <h3 className="text-sm sm:text-base font-black text-white leading-tight">
-                  Unified Digital Architecture &amp; Client Outcomes
+                <h3 className="font-heading text-sm sm:text-base font-black text-white leading-tight">
+                  The North Bridge — Coordinated Architecture &amp; Execution
                 </h3>
+                <p className="text-[11px] text-stone-400">
+                  Four structural pillars unifying strategy, velocity, cloud, and sovereignty
+                </p>
               </div>
             </div>
 
-            {/* Bridge Telemetry Badges */}
             <div className="flex items-center gap-2 text-xs font-mono">
-              <div className="px-2.5 py-0.5 rounded-lg bg-white/5 border border-white/10 text-stone-300 flex items-center gap-1.5 text-[11px]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C52623] animate-ping" />
-                <span>4 Pillars Locked</span>
-              </div>
-              <div className="px-2.5 py-0.5 rounded-lg bg-[#C52623]/20 border border-[#C52623]/40 text-[#ff4a47] font-bold text-[11px]">
-                Sub-20ms Deck Flow
-              </div>
+              <span className="px-2.5 py-0.5 rounded-lg bg-[#C52623]/20 border border-[#C52623]/40 text-[#ff4a47] font-semibold text-[11px]">
+                High Availability
+              </span>
             </div>
-          </div>
-
-          {/* Suspension Truss Line below the bridge deck */}
-          <div className="mt-2.5 pt-1.5 border-t border-white/10 flex items-center justify-between text-[9px] font-mono text-stone-400">
-            <span>PILLAR 01: STRATEGY</span>
-            <span className="text-[#C52623]">—— CABLES ——</span>
-            <span>PILLAR 02: VELOCITY</span>
-            <span className="text-[#C52623]">—— CABLES ——</span>
-            <span>PILLAR 03: CLOUD</span>
-            <span className="text-[#C52623]">—— CABLES ——</span>
-            <span>PILLAR 04: SOVEREIGNTY</span>
           </div>
         </div>
 
@@ -274,13 +251,9 @@ export default function Pillars() {
                   </div>
 
                   {/* Column Body Content (Concise) */}
-                  <div className="relative z-10 space-y-2 py-3">
-                    <span className="text-[9px] font-mono font-bold text-[#C52623] bg-[#C52623]/10 border border-[#C52623]/25 px-2 py-0.5 rounded-full inline-block">
-                      {pillar.tag}
-                    </span>
-
+                  <div className="relative z-10 space-y-1.5 py-3">
                     <h4
-                      className={`text-sm sm:text-base font-black leading-tight group-hover:text-[#C52623] transition-colors ${
+                      className={`font-heading text-sm sm:text-base font-black leading-tight group-hover:text-[#C52623] transition-colors ${
                         isDark ? "text-white" : "text-[#18191B]"
                       }`}
                     >

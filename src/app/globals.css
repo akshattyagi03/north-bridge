@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Nohemi";
+  src: url("/fonts/nohemi.woff2") format("woff2"),
+       url("https://db.onlinewebfonts.com/t/29ddb4605533a38e086b48fa105e0d12.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --paper: #FFFFFF;
   --paper-subtle: #FAFAF9;
@@ -29,7 +38,7 @@ body {
   min-height: 100%;
   background-color: #FFFFFF;
   color: var(--ink);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Nohemi", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -72,9 +81,14 @@ body::before {
   color: #FFFFFF;
 }
 
-/* Typography refinements */
-h1, h2, h3, h4, h5, h6 {
-  letter-spacing: -0.025em;
+/* Typography refinements: Helvetica for headings, Nohemi for text */
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.font-body, p, span, button, input, textarea, a {
+  font-family: "Nohemi", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 /* Carbon mesh texture pattern from reference images */

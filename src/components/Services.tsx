@@ -195,19 +195,16 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
         {/* Animated Heading on Scroll */}
         <AnimatedHeading
-          sectionNumber="03"
-          badge="OUR CAPABILITIES • INFINITE CAROUSEL"
           mainText="Our Services."
-          accentText="Interactive Disciplines."
-          subText="Interactive cards in an automatic loop. Hover to pause or tilt in 3D."
+          accentText="What We Build."
+          subText="Web applications, mobile platforms, UI/UX systems, and enterprise cloud infrastructure."
         />
 
         {/* Carousel Controls Bar */}
         <div className="flex items-center justify-between pt-1">
-          <div className="flex items-center gap-2 text-xs font-mono text-stone-500">
-            <span className="w-2 h-2 rounded-full bg-[#C52623] animate-pulse" />
-            <span className="font-bold text-[#C52623]">INFINITE 3D CAROUSEL</span>
-            <span className="hidden sm:inline">• Hover to pause • Red solid shadow</span>
+          <div className="flex items-center gap-2 text-xs text-stone-500">
+            <span className="w-2 h-2 rounded-full bg-[#C52623]" />
+            <span className="font-medium">Drag or scroll to explore capabilities</span>
           </div>
 
           <div className="flex items-center gap-1.5 sm:gap-2">
@@ -309,14 +306,9 @@ export default function Services() {
                   className="relative z-10 flex items-center justify-between"
                   style={{ transform: "translateZ(24px)" }}
                 >
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-mono text-[11px] font-bold text-white bg-[#C52623] px-2 py-0.5 rounded-full shadow-md">
-                      {srv.num}
-                    </span>
-                    <span className="text-[9px] font-mono font-bold text-stone-300 uppercase tracking-wider bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10">
-                      {srv.badge}
-                    </span>
-                  </div>
+                  <span className="font-mono text-xs font-bold text-white bg-[#C52623] px-2.5 py-0.5 rounded-full shadow-md">
+                    {srv.num}
+                  </span>
 
                   <div className="w-8 h-8 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-md group-hover:scale-105 group-hover:bg-[#C52623] transition-all duration-300">
                     <Icon className="w-4 h-4" />
@@ -328,7 +320,7 @@ export default function Services() {
                   className="relative z-10 space-y-2.5 pt-4"
                   style={{ transform: "translateZ(28px)" }}
                 >
-                  <h3 className="text-lg sm:text-xl font-black text-white leading-tight group-hover:text-[#ff4a47] transition-colors">
+                  <h3 className="font-heading text-lg sm:text-xl font-black text-white leading-tight group-hover:text-[#ff4a47] transition-colors">
                     {srv.title}
                   </h3>
 
@@ -362,9 +354,9 @@ export default function Services() {
                   <div className="pt-2 border-t border-white/15 flex items-center justify-between gap-2">
                     <button
                       onClick={() => setSelectedService(originalIdx)}
-                      className="px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white text-[10px] font-mono font-semibold transition-all inline-flex items-center gap-1 cursor-pointer"
+                      className="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white text-[11px] font-medium transition-all inline-flex items-center gap-1 cursor-pointer"
                     >
-                      <span>Slide {srv.slideNum}</span>
+                      <span>Overview</span>
                       <ExternalLink className="w-3 h-3 text-[#C52623]" />
                     </button>
 
@@ -390,9 +382,9 @@ export default function Services() {
             <div className="flex items-center justify-between pb-2 border-b border-white/10">
               <div className="flex items-center gap-2.5">
                 <span className="text-[10px] font-mono font-bold text-white bg-[#C52623] px-2.5 py-0.5 rounded-full">
-                  SLIDE {previewItem.slideNum} SPECIFICATION
+                  SPECIFICATION
                 </span>
-                <h4 className="text-base font-bold text-white">{previewItem.title}</h4>
+                <h4 className="font-heading text-base font-bold text-white">{previewItem.title}</h4>
               </div>
               <button
                 onClick={() => setSelectedService(null)}

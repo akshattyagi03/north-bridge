@@ -6,7 +6,7 @@ import { useTheme } from "../context/ThemeContext";
 
 interface AnimatedHeadingProps {
   sectionNumber?: string;
-  badge: string;
+  badge?: string;
   mainText: string;
   accentText: string;
   subText?: string;
@@ -109,38 +109,9 @@ export default function AnimatedHeading({
       } ${className}`}
     >
       <div>
-        {/* Compact Badge with Slide Index */}
-        <div
-          className={`anim-badge opacity-0 inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] mb-2 font-medium tracking-wide transition-colors duration-300 ${
-            isDark
-              ? "bg-stone-900 border border-stone-800 text-stone-300"
-              : "bg-stone-100/80 border border-stone-200/80 text-stone-700"
-          }`}
-        >
-          {sectionNumber && (
-            <span
-              className={`font-mono text-[10px] font-bold px-1.5 py-0.2 rounded ${
-                isDark
-                  ? "text-[#ff5c5a] bg-red-950/60 border border-red-900/50"
-                  : "text-[#C52623] bg-red-50 border border-red-100"
-              }`}
-            >
-              {sectionNumber}
-            </span>
-          )}
-          <span className="w-1.5 h-1.5 rounded-full bg-[#C52623] animate-pulse" />
-          <span
-            className={`uppercase tracking-wider text-[10px] font-semibold ${
-              isDark ? "text-stone-300" : "text-stone-600"
-            }`}
-          >
-            {badge}
-          </span>
-        </div>
-
-        {/* Compact Heading */}
+        {/* Compact Heading in Helvetica */}
         <h2
-          className={`text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight leading-snug transition-colors duration-300 ${
+          className={`font-heading text-xl sm:text-2xl lg:text-3xl font-black tracking-tight leading-snug transition-colors duration-300 ${
             isDark ? "text-white" : "text-stone-900"
           }`}
         >

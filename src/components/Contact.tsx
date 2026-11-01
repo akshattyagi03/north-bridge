@@ -110,17 +110,15 @@ export default function Contact() {
     >
       {/* Animated Heading on Scroll */}
       <AnimatedHeading
-        sectionNumber="07"
-        badge="LET’S BUILD • SLIDE 11 SPEC"
         mainText="Have an Idea?"
         accentText="Let’s Build It Together."
-        subText="Direct access to our engineering studio in Paris. Reach out to discuss your project scope."
+        subText="Direct access to our engineering team. Reach out to discuss your project scope."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start pt-6">
-        {/* Left Column: Direct Inquiries & Slide 11 Let's Build Visual */}
+        {/* Left Column: Direct Inquiries */}
         <div className="contact-left-card opacity-0 lg:col-span-5 space-y-4">
-          {/* Slide 11 3D Light Graphic Banner with Red Solid Shadow */}
+          {/* Visual Banner with Red Solid Shadow */}
           <div
             className={`rounded-2xl border overflow-hidden shadow-[5px_5px_0px_#C52623] relative group transition-colors duration-300 ${
               isDark ? "border-white/10 bg-[#101114]" : "border-[#484944]/15 bg-[#141518]"
@@ -129,7 +127,7 @@ export default function Contact() {
             <div className="relative aspect-16/9 w-full">
               <Image
                 src="/slides/slide-11.webp"
-                alt="Let's Build — 3D Light Graphic"
+                alt="Let's Build Together"
                 fill
                 sizes="(max-width: 1024px) 100vw, 500px"
                 className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-700"
@@ -138,10 +136,10 @@ export default function Contact() {
             <div className="p-3 bg-stone-950/90 backdrop-blur-md border-t border-white/10 text-white flex items-center justify-between text-xs">
               <div className="flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-[#C52623]" />
-                <span className="font-bold text-[11px]">Slide 11 • Let&apos;s Build</span>
+                <span className="font-bold text-[11px]">Let&apos;s Build Together</span>
               </div>
-              <span className="text-[9px] text-stone-400 font-mono">
-                CLEAR GOALS + SMART TECH
+              <span className="text-[10px] text-stone-400">
+                Strategic Engineering
               </span>
             </div>
           </div>

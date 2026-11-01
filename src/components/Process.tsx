@@ -122,11 +122,9 @@ export default function Process() {
     >
       {/* Animated Heading on Scroll */}
       <AnimatedHeading
-        sectionNumber="05"
-        badge="SCROLL TIMELINE • HOW WE SOLVE YOUR PROBLEMS"
         mainText="How We Solve"
         accentText="Your Problems."
-        subText="Scroll down to witness each stage — from bottleneck audit to zero-downtime production."
+        subText="A disciplined process from initial technical audit to scalable zero-downtime launch."
       />
 
       {/* =========================================================================
@@ -170,21 +168,6 @@ export default function Process() {
                         : "bg-white border-[#484944]/20 text-[#18191B]"
                     }`}
                   >
-                    {/* Top Stage Metadata */}
-                    <div
-                      className={`flex items-center gap-2 pb-2 mb-2 border-b border-white/10 ${
-                        isEven ? "sm:justify-end" : "sm:justify-start"
-                      }`}
-                    >
-                      <span className="font-mono text-[9px] font-bold text-white bg-[#C52623] px-2 py-0.5 rounded-full">
-                        STAGE {stg.num}
-                      </span>
-                      <span className="text-[11px] font-mono text-stone-400 flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-[#C52623]" />
-                        {stg.time}
-                      </span>
-                    </div>
-
                     {/* Stage Title */}
                     <div
                       className={`flex items-center gap-2.5 mb-2.5 ${
@@ -195,7 +178,7 @@ export default function Process() {
                         <Icon className="w-4 h-4" />
                       </div>
                       <h3
-                        className={`text-sm sm:text-base font-black group-hover:text-[#C52623] transition-colors leading-tight ${
+                        className={`font-heading text-sm sm:text-base font-black group-hover:text-[#C52623] transition-colors leading-tight ${
                           isDark ? "text-white" : "text-[#18191B]"
                         }`}
                       >
@@ -215,8 +198,8 @@ export default function Process() {
                       >
                         <AlertCircle className="w-3 h-3 text-[#C52623] shrink-0 mt-0.5" />
                         <div>
-                          <span className="font-bold font-mono text-[9px] block uppercase text-[#C52623]">
-                            The Bottleneck:
+                          <span className="font-bold text-[9px] block uppercase text-[#C52623]">
+                            Challenge:
                           </span>
                           <span className="text-[11px] leading-tight">{stg.problem}</span>
                         </div>
@@ -232,8 +215,8 @@ export default function Process() {
                       >
                         <CheckCircle2 className="w-3 h-3 text-[#C52623] shrink-0 mt-0.5" />
                         <div>
-                          <span className="font-bold font-mono text-[9px] block uppercase text-stone-400">
-                            Our Solution:
+                          <span className="font-bold text-[9px] block uppercase text-stone-400">
+                            Approach:
                           </span>
                           <span className="text-[11px] leading-tight">{stg.solution}</span>
                         </div>

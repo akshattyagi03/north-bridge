@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import Image from "next/image";
 import { animate } from "animejs";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
@@ -163,7 +162,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className={`relative pt-8 sm:pt-12 lg:pt-14 pb-8 sm:pb-10 lg:pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden transition-colors duration-300 ${
+      className={`relative min-h-screen flex flex-col justify-center items-center pt-24 sm:pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden transition-colors duration-300 ${
         isDark ? "bg-[#090A0D] text-white" : "bg-[#FAFAF9] text-[#18191B]"
       }`}
     >
@@ -210,59 +209,45 @@ export default function Hero() {
       {/* Main Content (Centered) */}
       <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center">
         {/* =========================================================================
-            CENTERED PROMINENT 3D LOGO CENTERPIECE (Refined, Well-Proportioned Dimensions)
+            COMPANY NAME: "North Bridge Tech" IN BOLD HELVETICA TYPOGRAPHY
            ========================================================================= */}
-        <div className="hero-logo-center opacity-0 mb-3 sm:mb-4 flex items-center justify-center">
-          <div
-            className={`relative group cursor-pointer transition-transform duration-500 hover:scale-[1.03] ${
-              entranceDone ? "animate-hero-float" : ""
-            }`}
-          >
-            {/* Multi-layered 3D Ambient Radiant Aura */}
-            <div className="hero-logo-aura opacity-0 absolute -inset-5 sm:-inset-8 bg-radial-[circle,rgba(197,38,35,0.45)_0%,rgba(197,38,35,0.12)_45%,transparent_75%] rounded-full blur-xl pointer-events-none" />
-            <div className="absolute -inset-2 bg-gradient-to-b from-[#C52623]/25 via-transparent to-transparent rounded-2xl blur-sm pointer-events-none opacity-80" />
+        <div className="hero-logo-center opacity-0 mb-2 sm:mb-3 flex items-center justify-center">
+          <div className="relative group text-center">
+            {/* Subtle Radiant Aura */}
+            <div className="hero-logo-aura opacity-0 absolute -inset-8 bg-radial-[circle,rgba(197,38,35,0.25)_0%,transparent_70%] rounded-full blur-2xl pointer-events-none" />
 
-            {/* Flagship Brand Logo with Refined Dimensions & Optical Clarity */}
-            <Image
-              src="/nbt-logo.png"
-              alt="NorthBridge Tech"
-              width={340}
-              height={190}
-              sizes="(max-width: 640px) 180px, (max-width: 1024px) 230px, 260px"
-              className={`w-44 sm:w-52 md:w-60 lg:w-[260px] h-auto object-contain transition-all duration-300 ${
-                isDark
-                  ? "brightness-[1.18] contrast-[1.08] drop-shadow-[0_10px_28px_rgba(197,38,35,0.55)] drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)]"
-                  : "drop-shadow-[0_10px_22px_rgba(197,38,35,0.22)] drop-shadow-[0_3px_8px_rgba(0,0,0,0.06)]"
-              }`}
-              priority
-            />
+            <h1 className="relative font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-none select-none">
+              <span className={isDark ? "text-white" : "text-[#18191B]"}>North </span>
+              <span className="text-[#C52623] drop-shadow-[0_0_24px_rgba(197,38,35,0.35)]">Bridge </span>
+              <span className={isDark ? "text-white" : "text-[#18191B]"}>Tech</span>
+            </h1>
           </div>
         </div>
 
         {/* =========================================================================
             SLOGAN (Shortened, Sleek & Executive Proportions)
            ========================================================================= */}
-        <h1
-          className={`hero-slogan text-base sm:text-lg md:text-xl lg:text-2xl font-black tracking-tight leading-snug max-w-xl mx-auto mt-2 sm:mt-3 mb-4 sm:mb-5 transition-colors duration-300 ${
-            isDark ? "text-white" : "text-[#18191B]"
+        <p
+          className={`hero-slogan text-base sm:text-lg md:text-xl lg:text-2xl font-medium tracking-tight leading-snug max-w-xl mx-auto mt-2 sm:mt-3 mb-6 sm:mb-8 transition-colors duration-300 ${
+            isDark ? "text-stone-300" : "text-[#484944]"
           }`}
         >
           <span className="hero-slogan-part-1 opacity-0 inline-block">
             One North.&nbsp;
           </span>
-          <span className="hero-slogan-part-2 opacity-0 text-[#C52623] inline-block drop-shadow-[0_0_15px_rgba(197,38,35,0.4)]">
+          <span className="hero-slogan-part-2 opacity-0 text-[#C52623] font-bold inline-block">
             Infinite Digital Directions
           </span>
-        </h1>
+        </p>
 
         {/* =========================================================================
             GLOWING CTA BUTTONS WITH SOLID RED SHADOW
            ========================================================================= */}
-        <div className="hero-cta-wrap opacity-0 relative mb-4 sm:mb-5 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+        <div className="hero-cta-wrap opacity-0 relative mb-6 sm:mb-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           <div className="relative group">
             <button
               onClick={() => scrollTo("contact")}
-              className="relative px-6 py-2.5 sm:py-3 rounded-full bg-[#18191B] border-2 border-[#C52623] text-white text-xs sm:text-sm font-bold tracking-wide transition-all inline-flex items-center gap-2 shadow-[4px_4px_0px_#C52623] hover:shadow-[6px_6px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
+              className="relative px-6 py-3 rounded-full bg-[#18191B] border-2 border-[#C52623] text-white text-xs sm:text-sm font-bold tracking-wide transition-all inline-flex items-center gap-2 shadow-[4px_4px_0px_#C52623] hover:shadow-[6px_6px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
             >
               <span>Book a Free Demo</span>
               <ArrowRight className="w-4 h-4 text-[#C52623] group-hover:translate-x-1 transition-transform" />
@@ -272,7 +257,7 @@ export default function Hero() {
           {/* SURPRISE ME 3D LOGO ANIMATION BUTTON */}
           <button
             onClick={() => setShowSurprise(true)}
-            className={`group px-5 py-2.5 sm:py-3 rounded-full border-2 transition-all duration-300 inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wide shadow-[4px_4px_0px_#C52623] hover:shadow-[6px_6px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer backdrop-blur-md ${
+            className={`group px-5 py-3 rounded-full border-2 transition-all duration-300 inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wide shadow-[4px_4px_0px_#C52623] hover:shadow-[6px_6px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer backdrop-blur-md ${
               isDark
                 ? "border-[#C52623] bg-[#141518] text-white hover:bg-[#C52623]"
                 : "border-[#C52623] bg-white text-[#C52623] hover:bg-[#C52623] hover:text-white"
@@ -297,14 +282,11 @@ export default function Hero() {
         {/* =========================================================================
             DIRECT ACCESS QUICK NAVIGATION BUTTONS
            ========================================================================= */}
-        <div className="hero-direct-access opacity-0 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 max-w-3xl mx-auto pt-1 pb-3">
-          <span className="text-[10px] font-mono font-bold text-stone-500 uppercase tracking-wider mr-1 hidden sm:inline">
-            Direct Access:
-          </span>
+        <div className="hero-direct-access opacity-0 flex flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto pt-1 pb-2">
           {[
             { label: "Who We Are", target: "about" },
             { label: "Our Services", target: "services" },
-            { label: "The Pillars", target: "pillars" },
+            { label: "Our Pillars", target: "pillars" },
             { label: "How We Solve", target: "process" },
             { label: "Your Direction", target: "orbit" },
             { label: "Contact Us", target: "contact" },
@@ -312,7 +294,7 @@ export default function Hero() {
             <button
               key={item.target}
               onClick={() => scrollTo(item.target)}
-              className={`px-3 py-1 rounded-full border text-[11px] font-mono transition-all duration-200 cursor-pointer ${
+              className={`px-4 py-1.5 rounded-full border text-xs font-medium transition-all duration-200 cursor-pointer ${
                 isDark
                   ? "bg-white/5 border-white/15 text-stone-300 hover:text-white hover:border-[#C52623] hover:bg-[#C52623]/20 hover:shadow-[3px_3px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5"
                   : "bg-white border-stone-300 text-stone-700 hover:text-stone-900 hover:border-[#C52623] hover:bg-red-50 hover:shadow-[3px_3px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5"

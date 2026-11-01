@@ -137,11 +137,9 @@ export default function OrbitDirection() {
     >
       {/* Animated Heading on Scroll */}
       <AnimatedHeading
-        sectionNumber="06"
-        badge="CLIENT-CENTRIC ORBIT • GOVERNANCE"
-        mainText="Your Say is"
-        accentText="Our Direction."
-        subText="You define the destination. We engineer the bridge around your direct feedback."
+        mainText="Your Direction."
+        accentText="Our Execution."
+        subText="You set the roadmap; we engineer the platform around your continuous feedback."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-2">
@@ -149,26 +147,21 @@ export default function OrbitDirection() {
             LEFT COLUMN: EDITORIAL CONTENT & ACTIVE POINT INSPECTOR WITH RED SOLID SHADOW
            ========================================================================= */}
         <div className="orbit-left-editorial opacity-0 lg:col-span-5 space-y-4">
-          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#C52623]/10 border border-[#C52623]/30 text-[10px] text-[#C52623] font-bold uppercase tracking-wider font-mono">
-            <Compass className="w-3 h-3 text-[#C52623]" />
-            <span>GRAVITATIONAL ALIGNMENT</span>
-          </div>
-
           <h3
-            className={`text-xl sm:text-2xl font-black tracking-tight leading-tight ${
+            className={`font-heading text-xl sm:text-2xl font-black tracking-tight leading-tight ${
               isDark ? "text-white" : "text-[#18191B]"
             }`}
           >
             Software that moves in sync with{" "}
-            <span className="text-[#C52623]">your business requirements.</span>
+            <span className="text-[#C52623]">your business goals.</span>
           </h3>
 
           <p
-            className={`text-xs leading-relaxed font-normal ${
+            className={`text-xs sm:text-sm leading-relaxed font-normal ${
               isDark ? "text-stone-300" : "text-[#484944]"
             }`}
           >
-            We eliminate traditional agency disconnect. Our engineering studio places your leadership at the center of the orbital system with full code transparency.
+            We eliminate agency disconnect. You work directly with senior engineers with bi-weekly testable demos, transparent codebases, and zero vendor lock-in.
           </p>
 
           {/* Active Inspected Point Card with Solid Red Shadow */}
@@ -181,40 +174,31 @@ export default function OrbitDirection() {
           >
             <div className="flex items-center justify-between pb-1.5 border-b border-white/10">
               <span className="font-mono text-[10px] font-bold text-white bg-[#C52623] px-2 py-0.5 rounded-full">
-                ORBITAL NODE {currentPoint.num}
+                {currentPoint.num}
               </span>
               <span className="text-[11px] font-mono text-stone-400">
                 {currentPoint.deliverable}
               </span>
             </div>
 
-            <h4 className="text-sm sm:text-base font-black text-[#C52623]">
+            <h4 className="font-heading text-sm sm:text-base font-black text-[#C52623]">
               {currentPoint.title}
             </h4>
 
             <p className={`text-xs leading-relaxed ${isDark ? "text-stone-300" : "text-[#484944]"}`}>
               {currentPoint.desc}
             </p>
-
-            <div className="pt-1.5 flex items-center justify-between text-[10px] font-mono text-stone-400">
-              <span>Status: Active Orbit</span>
-              <span className="text-[#C52623] font-bold">100% Transparent</span>
-            </div>
           </div>
 
           {/* Action CTAs */}
-          <div className="pt-1 flex flex-wrap items-center gap-3">
+          <div className="pt-1 flex items-center gap-3">
             <button
               onClick={scrollToContact}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#C52623] hover:bg-[#aa1f1c] text-white text-xs font-bold tracking-wide transition-all shadow-[4px_4px_0px_#851513] hover:shadow-[5px_5px_0px_#851513] hover:-translate-x-0.5 hover:-translate-y-0.5 cursor-pointer group"
             >
-              <span>Build Around Your Vision</span>
+              <span>Build With Us</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </button>
-
-            <span className="text-[11px] font-mono text-stone-500">
-              Hover circles to inspect
-            </span>
           </div>
         </div>
 
@@ -244,13 +228,10 @@ export default function OrbitDirection() {
               <div className="relative group cursor-pointer">
                 {/* Central Sphere with Red Solid Shadow */}
                 <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-[#851513] via-[#C52623] to-[#ff4a47] p-1 shadow-[4px_4px_0px_#851513] flex flex-col items-center justify-center text-center text-white ring-2 ring-black/40">
-                  <span className="font-mono text-[8px] font-black uppercase tracking-widest text-red-200 block mb-0.5">
-                    CENTER OF GRAVITY
-                  </span>
-                  <span className="text-xs sm:text-sm font-black leading-tight block">
+                  <span className="font-heading text-xs sm:text-sm font-black leading-tight block">
                     YOUR SAY
                   </span>
-                  <span className="text-[9px] font-bold text-white/90 block mt-0.5">
+                  <span className="text-[10px] font-bold text-white/90 block mt-0.5">
                     Our Direction
                   </span>
                 </div>
