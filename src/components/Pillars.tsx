@@ -117,7 +117,7 @@ export default function Pillars() {
     <section
       id="pillars"
       ref={sectionRef}
-      className={`py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-16 space-y-7 transition-colors duration-300 ${
+      className={`py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24 sm:scroll-mt-28 space-y-7 transition-colors duration-300 ${
         isDark ? "text-white" : "text-[#18191B]"
       }`}
     >

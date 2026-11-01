@@ -116,7 +116,7 @@ export default function Process() {
     <section
       id="process"
       ref={sectionRef}
-      className={`py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-16 space-y-7 transition-colors duration-300 ${
+      className={`py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24 sm:scroll-mt-28 space-y-7 transition-colors duration-300 ${
         isDark ? "border-b border-stone-800/80 text-white" : "border-b border-stone-200 text-[#18191B]"
       }`}
     >

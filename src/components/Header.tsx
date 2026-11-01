@@ -162,9 +162,9 @@ export default function Header() {
   return (
     <>
       {/* =========================================================================
-          FLOATING ROUNDED GLASSMORPHIC NAVBAR (With Top & Side Margin)
+          FLOATING ROUNDED GLASSMORPHIC NAVBAR (Layered Above Hero)
          ========================================================================= */}
-      <header className="sticky top-2.5 sm:top-4 z-40 w-full px-3.5 sm:px-6 lg:px-8 max-w-7xl mx-auto pointer-events-none transition-all duration-300">
+      <header className="fixed top-2.5 sm:top-4 inset-x-0 z-40 w-full px-3.5 sm:px-6 lg:px-8 max-w-7xl mx-auto pointer-events-none transition-all duration-300">
         <div
           className={`pointer-events-auto w-full h-14 sm:h-16 rounded-2xl sm:rounded-full px-3.5 sm:px-6 flex items-center justify-between transition-all duration-300 backdrop-blur-2xl border ${
             isDark

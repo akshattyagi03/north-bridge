@@ -162,7 +162,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className={`relative min-h-[calc(100vh-5rem)] min-h-[calc(100dvh-5rem)] md:h-[calc(100dvh-5rem)] flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 overflow-hidden transition-colors duration-300 ${
+      className={`relative h-screen h-[100dvh] min-h-[100dvh] w-full flex flex-col justify-center items-center pt-16 sm:pt-20 pb-6 sm:pb-10 px-4 sm:px-6 lg:px-8 overflow-hidden transition-colors duration-300 ${
         isDark ? "bg-[#090A0D] text-white" : "bg-[#F7F7F5] text-[#18191B]"
       }`}
     >
@@ -170,7 +170,7 @@ export default function Hero() {
           LEFT & RIGHT VIVID CRIMSON GEOMETRIC WINGS (Screenshots 4 & 5)
          ========================================================================= */}
       {/* Left Wing Shapes */}
-      <div className="hero-wing-left opacity-0 absolute top-12 -left-16 sm:-left-12 w-64 sm:w-80 lg:w-96 h-[550px] pointer-events-none z-0">
+      <div className="hero-wing-left opacity-0 absolute top-1/2 -translate-y-1/2 -left-16 sm:-left-12 w-64 sm:w-80 lg:w-96 h-[550px] pointer-events-none z-0">
         <div className="absolute inset-0 bg-[#C52623]/25 blur-3xl rounded-full" />
         <div
           className="absolute inset-0 bg-gradient-to-br from-[#851513] via-[#C52623] to-transparent opacity-90"
@@ -187,7 +187,7 @@ export default function Hero() {
       </div>
 
       {/* Right Wing Shapes */}
-      <div className="hero-wing-right opacity-0 absolute top-12 -right-16 sm:-right-12 w-64 sm:w-80 lg:w-96 h-[550px] pointer-events-none z-0">
+      <div className="hero-wing-right opacity-0 absolute top-1/2 -translate-y-1/2 -right-16 sm:-right-12 w-64 sm:w-80 lg:w-96 h-[550px] pointer-events-none z-0">
         <div className="absolute inset-0 bg-[#C52623]/25 blur-3xl rounded-full" />
         <div
           className="absolute inset-0 bg-gradient-to-bl from-[#851513] via-[#C52623] to-transparent opacity-90"

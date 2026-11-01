@@ -104,7 +104,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className={`py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-16 border-b transition-colors duration-300 ${
+      className={`py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24 sm:scroll-mt-28 border-b transition-colors duration-300 ${
         isDark ? "border-stone-800/80 text-white" : "border-stone-200 text-[#18191B]"
       }`}
     >

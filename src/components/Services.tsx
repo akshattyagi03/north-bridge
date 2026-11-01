@@ -213,7 +213,7 @@ export default function Services() {
     <section
       id="services"
       ref={sectionRef}
-      className={`py-10 sm:py-14 scroll-mt-16 relative overflow-hidden transition-colors duration-300 ${
+      className={`py-10 sm:py-14 scroll-mt-24 sm:scroll-mt-28 relative overflow-hidden transition-colors duration-300 ${
         isDark
           ? "bg-[#090A0D] text-white border-y border-stone-800/80"
           : "bg-[#F0F0EE] text-[#18191B] border-y border-stone-200/90"
