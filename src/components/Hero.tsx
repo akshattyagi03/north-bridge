@@ -163,7 +163,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className={`relative pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden transition-colors duration-300 ${
+      className={`relative pt-8 sm:pt-12 lg:pt-14 pb-8 sm:pb-10 lg:pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden transition-colors duration-300 ${
         isDark ? "bg-[#090A0D] text-white" : "bg-[#FAFAF9] text-[#18191B]"
       }`}
     >
@@ -243,28 +243,26 @@ export default function Hero() {
             SLOGAN (Shortened, Sleek & Executive Proportions)
            ========================================================================= */}
         <h1
-          className={`hero-slogan text-lg sm:text-xl md:text-2xl lg:text-[28px] font-black tracking-tight leading-snug max-w-2xl mx-auto mt-3 sm:mt-4 mb-6 sm:mb-8 transition-colors duration-300 ${
+          className={`hero-slogan text-base sm:text-lg md:text-xl lg:text-2xl font-black tracking-tight leading-snug max-w-xl mx-auto mt-2 sm:mt-3 mb-4 sm:mb-5 transition-colors duration-300 ${
             isDark ? "text-white" : "text-[#18191B]"
           }`}
         >
           <span className="hero-slogan-part-1 opacity-0 inline-block">
             One North.&nbsp;
           </span>
-          <span className="hero-slogan-part-2 opacity-0 text-[#C52623] inline-block drop-shadow-[0_0_20px_rgba(197,38,35,0.35)]">
+          <span className="hero-slogan-part-2 opacity-0 text-[#C52623] inline-block drop-shadow-[0_0_15px_rgba(197,38,35,0.4)]">
             Infinite Digital Directions
           </span>
         </h1>
 
         {/* =========================================================================
-            GLOWING CTA BUTTONS
+            GLOWING CTA BUTTONS WITH SOLID RED SHADOW
            ========================================================================= */}
-        <div className="hero-cta-wrap opacity-0 relative mb-5 sm:mb-7 flex flex-wrap items-center justify-center gap-4">
+        <div className="hero-cta-wrap opacity-0 relative mb-4 sm:mb-5 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           <div className="relative group">
-            <div className="absolute -inset-1 bg-[#C52623] rounded-full blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500" />
-
             <button
               onClick={() => scrollTo("contact")}
-              className="relative px-7 py-3.5 rounded-full bg-gradient-to-r from-[#18191B] via-[#242528] to-[#18191B] border border-[#C52623] hover:border-red-400 text-white text-xs sm:text-sm font-bold tracking-wide transition-all inline-flex items-center gap-2 shadow-2xl cursor-pointer"
+              className="relative px-6 py-2.5 sm:py-3 rounded-full bg-[#18191B] border-2 border-[#C52623] text-white text-xs sm:text-sm font-bold tracking-wide transition-all inline-flex items-center gap-2 shadow-[4px_4px_0px_#C52623] hover:shadow-[6px_6px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
             >
               <span>Book a Free Demo</span>
               <ArrowRight className="w-4 h-4 text-[#C52623] group-hover:translate-x-1 transition-transform" />
@@ -274,10 +272,10 @@ export default function Hero() {
           {/* SURPRISE ME 3D LOGO ANIMATION BUTTON */}
           <button
             onClick={() => setShowSurprise(true)}
-            className={`group px-6 py-3.5 rounded-full border transition-all duration-300 inline-flex items-center gap-2.5 text-xs sm:text-sm font-bold tracking-wide shadow-xl cursor-pointer backdrop-blur-md hover:scale-105 active:scale-95 ${
+            className={`group px-5 py-2.5 sm:py-3 rounded-full border-2 transition-all duration-300 inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wide shadow-[4px_4px_0px_#C52623] hover:shadow-[6px_6px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer backdrop-blur-md ${
               isDark
-                ? "border-red-500/60 bg-red-950/30 hover:bg-[#C52623] text-white hover:text-white hover:border-red-400 shadow-red-950/50"
-                : "border-[#C52623] bg-red-50/80 hover:bg-[#C52623] text-[#C52623] hover:text-white shadow-red-100"
+                ? "border-[#C52623] bg-[#141518] text-white hover:bg-[#C52623]"
+                : "border-[#C52623] bg-white text-[#C52623] hover:bg-[#C52623] hover:text-white"
             }`}
             title="Experience the Anime.js 3D Logo Animation"
             aria-label="Surprise Me - 3D Logo Animation"
@@ -299,8 +297,8 @@ export default function Hero() {
         {/* =========================================================================
             DIRECT ACCESS QUICK NAVIGATION BUTTONS
            ========================================================================= */}
-        <div className="hero-direct-access opacity-0 flex flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto pt-2 pb-6">
-          <span className="text-[11px] font-mono font-bold text-stone-500 uppercase tracking-wider mr-1 hidden sm:inline">
+        <div className="hero-direct-access opacity-0 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 max-w-3xl mx-auto pt-1 pb-3">
+          <span className="text-[10px] font-mono font-bold text-stone-500 uppercase tracking-wider mr-1 hidden sm:inline">
             Direct Access:
           </span>
           {[
@@ -314,10 +312,10 @@ export default function Hero() {
             <button
               key={item.target}
               onClick={() => scrollTo(item.target)}
-              className={`px-3.5 py-1.5 rounded-full border text-xs font-mono transition-all duration-300 cursor-pointer ${
+              className={`px-3 py-1 rounded-full border text-[11px] font-mono transition-all duration-200 cursor-pointer ${
                 isDark
-                  ? "bg-white/5 border-white/10 text-stone-300 hover:text-white hover:border-[#C52623] hover:bg-[#C52623]/15 shadow-xs"
-                  : "bg-white border-stone-200 text-stone-700 hover:text-stone-900 hover:border-[#C52623] hover:bg-red-50/50 shadow-xs"
+                  ? "bg-white/5 border-white/15 text-stone-300 hover:text-white hover:border-[#C52623] hover:bg-[#C52623]/20 hover:shadow-[3px_3px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5"
+                  : "bg-white border-stone-300 text-stone-700 hover:text-stone-900 hover:border-[#C52623] hover:bg-red-50 hover:shadow-[3px_3px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5"
               }`}
             >
               {item.label}

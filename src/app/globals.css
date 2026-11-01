@@ -145,5 +145,26 @@ h1, h2, h3, h4, h5, h6 {
   animation-play-state: paused !important;
 }
 
+/* Red Solid Shadow utilities for neo-brutalist tech cards */
+.shadow-red-solid-sm {
+  box-shadow: 3px 3px 0px 0px #C52623 !important;
+}
+
+.shadow-red-solid {
+  box-shadow: 4px 4px 0px 0px #C52623 !important;
+}
+
+.shadow-red-solid-md {
+  box-shadow: 5px 5px 0px 0px #C52623 !important;
+}
+
+.shadow-red-solid-lg {
+  box-shadow: 6px 6px 0px 0px #C52623 !important;
+}
+
+.shadow-red-solid-xl {
+  box-shadow: 8px 8px 0px 0px #C52623 !important;
+}
+
 
 

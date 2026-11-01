@@ -22,7 +22,7 @@ export const ORBIT_POINTS = [
     num: "01",
     title: "Direct Client Feedback",
     subtitle: "Real-time Slack & Weekly Sync",
-    desc: "Your insights and real-world domain feedback immediately shape the next sprint backlog. Zero bureaucratic layers.",
+    desc: "Direct Slack channel and weekly sprints shape the backlog with zero bureaucracy.",
     icon: MessageSquare,
     deliverable: "Same-day pivot responsiveness",
     angle: 0,
@@ -32,7 +32,7 @@ export const ORBIT_POINTS = [
     num: "02",
     title: "Transparent IP & Code",
     subtitle: "100% Client Repository IP",
-    desc: "Every commit, PR, and architectural document lives directly in your enterprise GitHub or GitLab repositories from day one.",
+    desc: "Every commit, PR, and spec lives in your enterprise GitHub or GitLab repositories.",
     icon: GitBranch,
     deliverable: "100% Client code ownership",
     angle: 72,
@@ -42,7 +42,7 @@ export const ORBIT_POINTS = [
     num: "03",
     title: "Continuous Sprint Demos",
     subtitle: "Live Staging URLs Bi-Weekly",
-    desc: "Never wait months to see software. We deploy testable production builds to staging environments every two weeks.",
+    desc: "Live testable production staging URLs deployed every two weeks for verification.",
     icon: Repeat,
     deliverable: "Bi-weekly testable demos",
     angle: 144,
@@ -52,7 +52,7 @@ export const ORBIT_POINTS = [
     num: "04",
     title: "Adaptive Architecture",
     subtitle: "Tailored to Your Roadmap",
-    desc: "We construct modular, sub-20ms microservices that flex as your user base and business requirements expand.",
+    desc: "Sub-20ms modular microservices that flex seamlessly with your business expansion.",
     icon: Cpu,
     deliverable: "Sub-20ms scalable core",
     angle: 216,
@@ -62,7 +62,7 @@ export const ORBIT_POINTS = [
     num: "05",
     title: "Post-Launch Growth",
     subtitle: "Proactive Telemetry & Care",
-    desc: "Our partnership continues beyond deployment with 24/7 telemetry monitoring alerts, feature iterations, and cloud scaling.",
+    desc: "24/7 telemetry monitoring alerts, feature iterations, and proactive cloud tuning.",
     icon: TrendingUp,
     deliverable: "24/7 SLA & Maintenance",
     angle: 288,
@@ -131,7 +131,7 @@ export default function OrbitDirection() {
     <section
       id="orbit"
       ref={sectionRef}
-      className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-16 space-y-12 transition-colors duration-300 ${
+      className={`py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-16 space-y-7 transition-colors duration-300 ${
         isDark ? "border-b border-stone-800/80 text-white" : "border-b border-stone-200 text-[#18191B]"
       }`}
     >
@@ -141,21 +141,21 @@ export default function OrbitDirection() {
         badge="CLIENT-CENTRIC ORBIT • GOVERNANCE"
         mainText="Your Say is"
         accentText="Our Direction."
-        subText="You define the destination. We engineer the high-speed bridge. Every architectural milestone revolves around your direct feedback."
+        subText="You define the destination. We engineer the bridge around your direct feedback."
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center pt-4">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-2">
         {/* =========================================================================
-            LEFT COLUMN: EDITORIAL CONTENT & ACTIVE POINT INSPECTOR
+            LEFT COLUMN: EDITORIAL CONTENT & ACTIVE POINT INSPECTOR WITH RED SOLID SHADOW
            ========================================================================= */}
-        <div className="orbit-left-editorial opacity-0 lg:col-span-5 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C52623]/10 border border-[#C52623]/30 text-[11px] text-[#C52623] font-bold uppercase tracking-wider font-mono">
-            <Compass className="w-3.5 h-3.5 text-[#C52623]" />
+        <div className="orbit-left-editorial opacity-0 lg:col-span-5 space-y-4">
+          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#C52623]/10 border border-[#C52623]/30 text-[10px] text-[#C52623] font-bold uppercase tracking-wider font-mono">
+            <Compass className="w-3 h-3 text-[#C52623]" />
             <span>GRAVITATIONAL ALIGNMENT</span>
           </div>
 
           <h3
-            className={`text-2xl sm:text-3xl font-black tracking-tight leading-tight ${
+            className={`text-xl sm:text-2xl font-black tracking-tight leading-tight ${
               isDark ? "text-white" : "text-[#18191B]"
             }`}
           >
@@ -164,31 +164,31 @@ export default function OrbitDirection() {
           </h3>
 
           <p
-            className={`text-xs sm:text-sm leading-relaxed font-normal ${
+            className={`text-xs leading-relaxed font-normal ${
               isDark ? "text-stone-300" : "text-[#484944]"
             }`}
           >
-            We eliminate the traditional agency disconnect. Instead of disappearing for months to build assumptions, our engineering studio places your leadership at the center of the orbital system.
+            We eliminate traditional agency disconnect. Our engineering studio places your leadership at the center of the orbital system with full code transparency.
           </p>
 
-          {/* Active Inspected Point Card */}
+          {/* Active Inspected Point Card with Solid Red Shadow */}
           <div
-            className={`p-5 sm:p-6 rounded-3xl border shadow-xl space-y-3 transition-all duration-300 ${
+            className={`p-4 sm:p-5 rounded-2xl border shadow-[5px_5px_0px_#C52623] space-y-2.5 transition-all duration-300 ${
               isDark
                 ? "bg-[#121316] border-white/10 text-white"
-                : "bg-white border-[#484944]/15 text-[#18191B]"
+                : "bg-white border-[#484944]/20 text-[#18191B]"
             }`}
           >
-            <div className="flex items-center justify-between pb-2 border-b border-white/10">
-              <span className="font-mono text-xs font-bold text-white bg-[#C52623] px-2.5 py-0.5 rounded-full">
+            <div className="flex items-center justify-between pb-1.5 border-b border-white/10">
+              <span className="font-mono text-[10px] font-bold text-white bg-[#C52623] px-2 py-0.5 rounded-full">
                 ORBITAL NODE {currentPoint.num}
               </span>
-              <span className="text-xs font-mono text-stone-400">
+              <span className="text-[11px] font-mono text-stone-400">
                 {currentPoint.deliverable}
               </span>
             </div>
 
-            <h4 className="text-base sm:text-lg font-black text-[#C52623]">
+            <h4 className="text-sm sm:text-base font-black text-[#C52623]">
               {currentPoint.title}
             </h4>
 
@@ -196,75 +196,68 @@ export default function OrbitDirection() {
               {currentPoint.desc}
             </p>
 
-            <div className="pt-2 flex items-center justify-between text-[11px] font-mono text-stone-400">
+            <div className="pt-1.5 flex items-center justify-between text-[10px] font-mono text-stone-400">
               <span>Status: Active Orbit</span>
               <span className="text-[#C52623] font-bold">100% Transparent</span>
             </div>
           </div>
 
           {/* Action CTAs */}
-          <div className="pt-2 flex flex-wrap items-center gap-4">
+          <div className="pt-1 flex flex-wrap items-center gap-3">
             <button
               onClick={scrollToContact}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#C52623] hover:bg-[#aa1f1c] text-white text-xs font-bold tracking-wide transition-all shadow-lg hover:shadow-red-950/40 cursor-pointer group"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#C52623] hover:bg-[#aa1f1c] text-white text-xs font-bold tracking-wide transition-all shadow-[4px_4px_0px_#851513] hover:shadow-[5px_5px_0px_#851513] hover:-translate-x-0.5 hover:-translate-y-0.5 cursor-pointer group"
             >
               <span>Build Around Your Vision</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </button>
 
-            <span className="text-xs font-mono text-stone-500">
-              Hover or click any circle to inspect
+            <span className="text-[11px] font-mono text-stone-500">
+              Hover circles to inspect
             </span>
           </div>
         </div>
 
         {/* =========================================================================
-            RIGHT COLUMN: ORBITAL POINT SYSTEM (CIRCLES ORBITING CENTER POINT)
+            RIGHT COLUMN: ORBITAL POINT SYSTEM WITH RED SOLID SHADOW
            ========================================================================= */}
         <div className="orbit-stage-container opacity-0 lg:col-span-7 flex flex-col items-center justify-center relative">
           <div
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className={`relative w-[340px] h-[340px] sm:w-[460px] sm:h-[460px] rounded-full border flex items-center justify-center transition-colors duration-300 shadow-2xl select-none ${
+            className={`relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] rounded-full border flex items-center justify-center transition-colors duration-300 shadow-[6px_6px_0px_#C52623] select-none ${
               isDark
                 ? "bg-[#0B0C0E]/90 border-white/10"
-                : "bg-white border-[#484944]/15"
+                : "bg-white border-[#484944]/20"
             }`}
           >
             {/* Ambient Background Core Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#C52623]/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-[#C52623]/15 rounded-full blur-3xl pointer-events-none" />
 
             {/* Concentric Orbital Track Rings */}
-            <div className="absolute inset-8 rounded-full border border-dashed border-red-500/20 pointer-events-none" />
-            <div className="absolute inset-16 rounded-full border border-stone-500/10 pointer-events-none" />
-            <div className="absolute inset-28 rounded-full border border-dashed border-red-500/30 pointer-events-none" />
+            <div className="absolute inset-6 rounded-full border border-dashed border-red-500/20 pointer-events-none" />
+            <div className="absolute inset-14 rounded-full border border-stone-500/10 pointer-events-none" />
+            <div className="absolute inset-24 rounded-full border border-dashed border-red-500/30 pointer-events-none" />
 
-            {/* =========================================================================
-                THE CENTER NUCLEUS: "YOUR SAY" (The Gravitational Center Point)
-               ========================================================================= */}
+            {/* THE CENTER NUCLEUS: "YOUR SAY" */}
             <div className="relative z-30 flex flex-col items-center justify-center">
               <div className="relative group cursor-pointer">
-                {/* Radiant Pulsing Core Aura */}
-                <div className="absolute -inset-3 bg-[#C52623] rounded-full blur-xl opacity-75 group-hover:opacity-100 animate-pulse transition-opacity duration-500" />
-
-                {/* Central Sphere */}
-                <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-[#851513] via-[#C52623] to-[#ff4a47] p-1 shadow-2xl flex flex-col items-center justify-center text-center text-white ring-4 ring-black/40">
-                  <span className="font-mono text-[9px] font-black uppercase tracking-widest text-red-200 block mb-0.5">
+                {/* Central Sphere with Red Solid Shadow */}
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-[#851513] via-[#C52623] to-[#ff4a47] p-1 shadow-[4px_4px_0px_#851513] flex flex-col items-center justify-center text-center text-white ring-2 ring-black/40">
+                  <span className="font-mono text-[8px] font-black uppercase tracking-widest text-red-200 block mb-0.5">
                     CENTER OF GRAVITY
                   </span>
                   <span className="text-xs sm:text-sm font-black leading-tight block">
                     YOUR SAY
                   </span>
-                  <span className="text-[10px] font-bold text-white/90 block mt-0.5">
+                  <span className="text-[9px] font-bold text-white/90 block mt-0.5">
                     Our Direction
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* =========================================================================
-                THE ORBITING TRACK CONTAINER (Rotates continuously around the center)
-               ========================================================================= */}
+            {/* THE ORBITING TRACK CONTAINER */}
             <div
               className={`absolute inset-0 flex items-center justify-center animate-orbit-track ${
                 isHovered ? "orbit-paused" : ""
@@ -274,10 +267,8 @@ export default function OrbitDirection() {
                 const Icon = pt.icon;
                 const isSelected = activePoint === idx;
 
-                // Position nodes at equal angular increments along circle
                 const rad = (pt.angle * Math.PI) / 180;
-                // Responsive distance from center
-                const distancePct = 40; // 40% from center
+                const distancePct = 40;
                 const x = Math.cos(rad) * distancePct;
                 const y = Math.sin(rad) * distancePct;
 
@@ -291,28 +282,27 @@ export default function OrbitDirection() {
                       transform: "translate(-50%, -50%)",
                     }}
                   >
-                    {/* Counter-rotating wrapper to keep child upright and readable */}
                     <div
                       className={`animate-orbit-node ${isHovered ? "orbit-paused" : ""}`}
                     >
                       <button
                         onClick={() => setActivePoint(idx)}
                         onMouseEnter={() => setActivePoint(idx)}
-                        className={`group relative w-16 h-16 sm:w-20 sm:h-20 rounded-full border flex flex-col items-center justify-center p-1.5 transition-all duration-300 shadow-xl cursor-pointer ${
+                        className={`group relative w-13 h-13 sm:w-16 sm:h-16 rounded-full border flex flex-col items-center justify-center p-1 transition-all duration-200 cursor-pointer ${
                           isSelected
-                            ? "bg-[#C52623] text-white border-white scale-110 shadow-[0_0_25px_rgba(197,38,35,0.85)] ring-4 ring-red-500/30"
+                            ? "bg-[#C52623] text-white border-white scale-110 shadow-[4px_4px_0px_#851513] ring-2 ring-red-400"
                             : isDark
-                            ? "bg-[#18191D] text-stone-200 border-white/15 hover:border-[#C52623] hover:scale-105"
-                            : "bg-white text-stone-800 border-[#484944]/20 hover:border-[#C52623] hover:scale-105"
+                            ? "bg-[#18191D] text-stone-200 border-white/15 hover:border-[#C52623] hover:scale-105 shadow-[2px_2px_0px_#C52623]"
+                            : "bg-white text-stone-800 border-[#484944]/25 hover:border-[#C52623] hover:scale-105 shadow-[2px_2px_0px_#C52623]"
                         }`}
                         title={pt.title}
                         aria-label={pt.title}
                       >
-                        <Icon className="w-4 h-4 sm:w-5 sm:h-5 mb-0.5 group-hover:scale-110 transition-transform" />
-                        <span className="font-mono text-[8px] sm:text-[9px] font-black uppercase text-center leading-tight truncate max-w-[55px] sm:max-w-[65px]">
+                        <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 mb-0.5 group-hover:scale-110 transition-transform" />
+                        <span className="font-mono text-[7px] sm:text-[8px] font-black uppercase text-center leading-tight truncate max-w-[45px] sm:max-w-[55px]">
                           {pt.title.split(" ")[0]}
                         </span>
-                        <span className="text-[7px] font-mono text-stone-400 group-hover:text-white">
+                        <span className="text-[6px] font-mono text-stone-400 group-hover:text-white">
                           {pt.num}
                         </span>
                       </button>
@@ -324,9 +314,9 @@ export default function OrbitDirection() {
           </div>
 
           {/* Quick status bar below the orbit */}
-          <div className="pt-4 text-center">
-            <span className="text-xs font-mono text-stone-500 flex items-center justify-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#C52623] animate-ping" />
+          <div className="pt-3 text-center">
+            <span className="text-[11px] font-mono text-stone-500 flex items-center justify-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C52623] animate-ping" />
               <span>5 Client Planetary Nodes in Continuous Synchronous Orbit</span>
             </span>
           </div>

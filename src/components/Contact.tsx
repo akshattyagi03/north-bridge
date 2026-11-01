@@ -104,7 +104,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-16 border-b transition-colors duration-300 ${
+      className={`py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-16 border-b transition-colors duration-300 ${
         isDark ? "border-stone-800/80 text-white" : "border-stone-200 text-[#18191B]"
       }`}
     >
@@ -117,12 +117,12 @@ export default function Contact() {
         subText="Direct access to our engineering studio in Paris. Reach out to discuss your project scope."
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start pt-6">
         {/* Left Column: Direct Inquiries & Slide 11 Let's Build Visual */}
-        <div className="contact-left-card opacity-0 lg:col-span-5 space-y-5">
-          {/* Slide 11 3D Light Graphic Banner */}
+        <div className="contact-left-card opacity-0 lg:col-span-5 space-y-4">
+          {/* Slide 11 3D Light Graphic Banner with Red Solid Shadow */}
           <div
-            className={`rounded-3xl border overflow-hidden shadow-lg relative group transition-colors duration-300 ${
+            className={`rounded-2xl border overflow-hidden shadow-[5px_5px_0px_#C52623] relative group transition-colors duration-300 ${
               isDark ? "border-white/10 bg-[#101114]" : "border-[#484944]/15 bg-[#141518]"
             }`}
           >
@@ -135,27 +135,27 @@ export default function Contact() {
                 className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-700"
               />
             </div>
-            <div className="p-4 bg-stone-950/90 backdrop-blur-md border-t border-white/10 text-white flex items-center justify-between text-xs">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#C52623]" />
-                <span className="font-bold">Slide 11 • Let&apos;s Build</span>
+            <div className="p-3 bg-stone-950/90 backdrop-blur-md border-t border-white/10 text-white flex items-center justify-between text-xs">
+              <div className="flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-[#C52623]" />
+                <span className="font-bold text-[11px]">Slide 11 • Let&apos;s Build</span>
               </div>
-              <span className="text-[10px] text-stone-400 font-mono">
+              <span className="text-[9px] text-stone-400 font-mono">
                 CLEAR GOALS + SMART TECH
               </span>
             </div>
           </div>
 
-          {/* Contact Details Card */}
+          {/* Contact Details Card with Red Solid Shadow */}
           <div
-            className={`p-6 rounded-3xl border space-y-4 transition-colors duration-300 ${
+            className={`p-4 sm:p-5 rounded-2xl border space-y-3 transition-colors duration-300 shadow-[5px_5px_0px_#C52623] ${
               isDark
-                ? "bg-[#101114] border-white/10 text-stone-300 shadow-md"
-                : "bg-white border-[#484944]/15 text-[#18191B] shadow-sm"
+                ? "bg-[#101114] border-white/10 text-stone-300"
+                : "bg-white border-[#484944]/20 text-[#18191B]"
             }`}
           >
             <div
-              className={`flex items-center gap-3 pb-4 border-b ${
+              className={`flex items-center gap-3 pb-3 border-b ${
                 isDark ? "border-white/10" : "border-stone-100"
               }`}
             >
@@ -164,44 +164,44 @@ export default function Contact() {
                 alt="NorthBridge Tech"
                 width={70}
                 height={38}
-                className={`h-6 w-auto object-contain ${isDark ? "brightness-110" : ""}`}
+                className={`h-5 w-auto object-contain ${isDark ? "brightness-110" : ""}`}
               />
               <div className={`border-l pl-3 ${isDark ? "border-white/10" : "border-stone-200"}`}>
                 <span
-                  className={`text-sm font-bold block leading-tight ${
+                  className={`text-xs font-bold block leading-tight ${
                     isDark ? "text-white" : "text-stone-900"
                   }`}
                 >
                   NorthBridge Tech
                 </span>
-                <span className={`text-[11px] leading-tight ${isDark ? "text-stone-400" : "text-[#484944]"}`}>
+                <span className={`text-[10px] leading-tight ${isDark ? "text-stone-400" : "text-[#484944]"}`}>
                   Paris, France • Global Reach
                 </span>
               </div>
             </div>
 
-            <div className="space-y-3 text-xs">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center text-[#C52623] shrink-0">
-                  <User className="w-4 h-4" />
+            <div className="space-y-2.5 text-xs">
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-red-500/10 flex items-center justify-center text-[#C52623] shrink-0">
+                  <User className="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <span className="text-stone-400 block text-[9px] uppercase font-mono">Studio Leadership</span>
-                  <span className={`font-semibold text-xs ${isDark ? "text-white" : "text-stone-900"}`}>
-                    Dhrumit Nagarbandhara, Founder & CEO
+                  <span className="text-stone-400 block text-[8px] uppercase font-mono">Studio Leadership</span>
+                  <span className={`font-semibold text-[11px] ${isDark ? "text-white" : "text-stone-900"}`}>
+                    Dhrumit Nagarbandhara, Founder &amp; CEO
                   </span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center text-[#C52623] shrink-0">
-                  <Mail className="w-4 h-4" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-red-500/10 flex items-center justify-center text-[#C52623] shrink-0">
+                  <Mail className="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <span className="text-stone-400 block text-[9px] uppercase font-mono">Direct Inquiry</span>
+                  <span className="text-stone-400 block text-[8px] uppercase font-mono">Direct Inquiry</span>
                   <a
                     href="mailto:dhrumit@northbridgetech.group"
-                    className={`font-semibold text-xs transition-colors ${
+                    className={`font-semibold text-[11px] transition-colors ${
                       isDark ? "text-stone-200 hover:text-[#C52623]" : "text-stone-900 hover:text-[#C52623]"
                     }`}
                   >
@@ -210,25 +210,25 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center text-[#C52623] shrink-0">
-                  <MapPin className="w-4 h-4" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-red-500/10 flex items-center justify-center text-[#C52623] shrink-0">
+                  <MapPin className="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <span className="text-stone-400 block text-[9px] uppercase font-mono">Paris Headquarters</span>
-                  <span className={`font-medium text-xs ${isDark ? "text-stone-300" : "text-stone-900"}`}>
+                  <span className="text-stone-400 block text-[8px] uppercase font-mono">Paris Headquarters</span>
+                  <span className={`font-medium text-[11px] ${isDark ? "text-stone-300" : "text-stone-900"}`}>
                     Paris, France (Worldwide Remote Operations)
                   </span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center text-[#C52623] shrink-0">
-                  <ShieldCheck className="w-4 h-4" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-red-500/10 flex items-center justify-center text-[#C52623] shrink-0">
+                  <ShieldCheck className="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <span className="text-stone-400 block text-[9px] uppercase font-mono">Response SLA</span>
-                  <span className="text-[#C52623] font-bold font-mono text-xs">
+                  <span className="text-stone-400 block text-[8px] uppercase font-mono">Response SLA</span>
+                  <span className="text-[#C52623] font-bold font-mono text-[11px]">
                     &lt; 24h Response Guaranteed
                   </span>
                 </div>
@@ -237,11 +237,11 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Right Column: Clean Inquiry Form */}
+        {/* Right Column: Clean Inquiry Form with Red Solid Shadow */}
         <div className="contact-form-card opacity-0 lg:col-span-7">
           <div
-            className={`p-6 sm:p-8 rounded-3xl border shadow-xl transition-colors duration-300 ${
-              isDark ? "bg-[#101114] border-white/10" : "bg-white border-[#484944]/15"
+            className={`p-5 sm:p-6 rounded-2xl border shadow-[6px_6px_0px_#C52623] transition-colors duration-300 ${
+              isDark ? "bg-[#101114] border-white/10" : "bg-white border-[#484944]/20"
             }`}
           >
             {submitted ? (
@@ -374,7 +374,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3.5 px-6 rounded-full bg-[#C52623] hover:bg-[#aa1f1c] disabled:opacity-50 text-white text-xs sm:text-sm font-bold tracking-wide transition-all shadow-lg hover:shadow-red-950/40 inline-flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3 px-6 rounded-full bg-[#C52623] hover:bg-[#aa1f1c] disabled:opacity-50 text-white text-xs sm:text-sm font-bold tracking-wide transition-all shadow-[4px_4px_0px_#851513] hover:shadow-[5px_5px_0px_#851513] hover:-translate-x-0.5 hover:-translate-y-0.5 inline-flex items-center justify-center gap-2 cursor-pointer"
                 >
                   {loading ? (
                     <span>Sending Inquiry...</span>
