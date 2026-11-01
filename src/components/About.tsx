@@ -179,14 +179,14 @@ export default function About() {
         </div>
 
         {/* =========================================================================
-            RIGHT COLUMN: ROTATING 3D FIGURE (Frameless, Clean Monogram)
+            RIGHT COLUMN: ROTATING 3D FIGURE (Frameless, Proportional & No Overflow)
            ========================================================================= */}
-        <div className="about-right-3d opacity-0 lg:col-span-5 relative flex items-center justify-center">
-          <div className="relative w-full max-w-sm h-[280px] sm:h-[340px] flex items-center justify-center">
+        <div className="about-right-3d opacity-0 lg:col-span-5 relative flex items-center justify-center py-2">
+          <div className="relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[340px] md:h-[340px] flex items-center justify-center overflow-visible">
             <GeometricLogoCanvas
               mode="float"
               autoRotate={true}
-              scale={1.15}
+              scale={0.65}
               transparentBg={true}
               cameraPreset="isometric"
               hoverTilt={true}
