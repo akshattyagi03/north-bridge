@@ -126,6 +126,37 @@ export default function Services() {
   // 3D Card Hover Tilt state map
   const [tiltMap, setTiltMap] = useState<Record<number, { rotX: number; rotY: number }>>({});
 
+  // Pointer drag state for mouse and mobile touch swipe
+  const isDraggingRef = useRef(false);
+  const dragStartXRef = useRef(0);
+  const dragScrollStartRef = useRef(0);
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = carouselRef.current;
+    if (!el) return;
+    isDraggingRef.current = true;
+    dragStartXRef.current = e.clientX;
+    dragScrollStartRef.current = el.scrollLeft;
+    setIsPaused(true);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDraggingRef.current) return;
+    const el = carouselRef.current;
+    if (!el) return;
+    const deltaX = e.clientX - dragStartXRef.current;
+    el.scrollLeft = dragScrollStartRef.current - deltaX;
+    scrollPosRef.current = el.scrollLeft;
+  };
+
+  const handlePointerUp = () => {
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
+    setTimeout(() => {
+      setIsPaused(false);
+    }, 1200);
+  };
+
   const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>, idx: number) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
@@ -249,13 +280,19 @@ export default function Services() {
       </div>
 
       {/* =========================================================================
-          INFINITE AUTOMATIC 3D CAROUSEL CONTAINER (Compact & Red Solid Shadow)
+          INFINITE AUTOMATIC 3D CAROUSEL CONTAINER (Responsive Drag & Touch Swipe)
          ========================================================================= */}
       <div
         ref={carouselRef}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
         onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        className="flex gap-4 sm:gap-4.5 overflow-x-hidden py-4 sm:py-5 px-4 sm:px-6 cursor-grab active:cursor-grabbing no-scrollbar select-none"
+        onMouseLeave={() => {
+          if (!isDraggingRef.current) setIsPaused(false);
+        }}
+        className="flex gap-3 sm:gap-4.5 overflow-x-auto sm:overflow-x-hidden py-4 sm:py-5 px-4 sm:px-6 cursor-grab active:cursor-grabbing no-scrollbar select-none touch-pan-x"
         style={{ scrollBehavior: "auto" }}
       >
         {CAROUSEL_ITEMS.map((srv, idx) => {
@@ -268,7 +305,7 @@ export default function Services() {
               key={`${srv.id}-${idx}`}
               onMouseMove={(e) => handleCardMouseMove(e, idx)}
               onMouseLeave={() => handleCardMouseLeave(idx)}
-              className="relative shrink-0 w-[230px] sm:w-[250px] md:w-[265px] h-[325px] sm:h-[340px] rounded-2xl group cursor-pointer transition-transform duration-300 ease-out"
+              className="relative shrink-0 w-[215px] xs:w-[235px] sm:w-[250px] md:w-[265px] h-[315px] xs:h-[325px] sm:h-[340px] rounded-2xl group cursor-pointer transition-transform duration-300 ease-out"
               style={{
                 perspective: "1200px",
               }}

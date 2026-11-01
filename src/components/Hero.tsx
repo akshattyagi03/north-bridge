@@ -162,7 +162,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className={`relative h-[calc(100vh-4rem)] h-[calc(100dvh-4rem)] min-h-[calc(100dvh-4rem)] flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-5 overflow-hidden transition-colors duration-300 ${
+      className={`relative min-h-[calc(100vh-4rem)] min-h-[calc(100dvh-4rem)] md:h-[calc(100dvh-4rem)] flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 py-4 sm:py-6 overflow-hidden transition-colors duration-300 ${
         isDark ? "bg-[#090A0D] text-white" : "bg-[#FAFAF9] text-[#18191B]"
       }`}
     >
@@ -282,7 +282,7 @@ export default function Hero() {
         {/* =========================================================================
             DIRECT ACCESS QUICK NAVIGATION BUTTONS
            ========================================================================= */}
-        <div className="hero-direct-access opacity-0 flex flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto pt-1 pb-2">
+        <div className="hero-direct-access opacity-0 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 max-w-3xl mx-auto pt-1 pb-2">
           {[
             { label: "Who We Are", target: "about" },
             { label: "Our Services", target: "services" },
@@ -294,7 +294,7 @@ export default function Hero() {
             <button
               key={item.target}
               onClick={() => scrollTo(item.target)}
-              className={`px-4 py-1.5 rounded-full border text-xs font-medium transition-all duration-200 cursor-pointer ${
+              className={`px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border text-[11px] sm:text-xs font-medium transition-all duration-200 cursor-pointer ${
                 isDark
                   ? "bg-white/5 border-white/15 text-stone-300 hover:text-white hover:border-[#C52623] hover:bg-[#C52623]/20 hover:shadow-[3px_3px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5"
                   : "bg-white border-stone-300 text-stone-700 hover:text-stone-900 hover:border-[#C52623] hover:bg-red-50 hover:shadow-[3px_3px_0px_#C52623] hover:-translate-x-0.5 hover:-translate-y-0.5"

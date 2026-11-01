@@ -205,11 +205,11 @@ export default function OrbitDirection() {
         {/* =========================================================================
             RIGHT COLUMN: ORBITAL POINT SYSTEM WITH RED SOLID SHADOW
            ========================================================================= */}
-        <div className="orbit-stage-container opacity-0 lg:col-span-7 flex flex-col items-center justify-center relative">
+        <div className="orbit-stage-container opacity-0 lg:col-span-7 flex flex-col items-center justify-center relative py-2">
           <div
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className={`relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] rounded-full border flex items-center justify-center transition-colors duration-300 shadow-[6px_6px_0px_#C52623] select-none ${
+            className={`relative w-[270px] h-[270px] xs:w-[310px] xs:h-[310px] sm:w-[380px] sm:h-[380px] md:w-[400px] md:h-[400px] max-w-[calc(100vw-2.5rem)] max-h-[calc(100vw-2.5rem)] rounded-full border flex items-center justify-center transition-colors duration-300 shadow-[5px_5px_0px_#C52623] sm:shadow-[6px_6px_0px_#C52623] select-none ${
               isDark
                 ? "bg-[#0B0C0E]/90 border-white/10"
                 : "bg-white border-[#484944]/20"
@@ -219,19 +219,19 @@ export default function OrbitDirection() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-[#C52623]/15 rounded-full blur-3xl pointer-events-none" />
 
             {/* Concentric Orbital Track Rings */}
-            <div className="absolute inset-6 rounded-full border border-dashed border-red-500/20 pointer-events-none" />
-            <div className="absolute inset-14 rounded-full border border-stone-500/10 pointer-events-none" />
-            <div className="absolute inset-24 rounded-full border border-dashed border-red-500/30 pointer-events-none" />
+            <div className="absolute inset-4 sm:inset-6 rounded-full border border-dashed border-red-500/20 pointer-events-none" />
+            <div className="absolute inset-10 sm:inset-14 rounded-full border border-stone-500/10 pointer-events-none" />
+            <div className="absolute inset-16 sm:inset-24 rounded-full border border-dashed border-red-500/30 pointer-events-none" />
 
             {/* THE CENTER NUCLEUS: "YOUR SAY" */}
             <div className="relative z-30 flex flex-col items-center justify-center">
               <div className="relative group cursor-pointer">
                 {/* Central Sphere with Red Solid Shadow */}
-                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-[#851513] via-[#C52623] to-[#ff4a47] p-1 shadow-[4px_4px_0px_#851513] flex flex-col items-center justify-center text-center text-white ring-2 ring-black/40">
-                  <span className="font-heading text-xs sm:text-sm font-black leading-tight block">
+                <div className="relative w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-[#851513] via-[#C52623] to-[#ff4a47] p-1 shadow-[4px_4px_0px_#851513] flex flex-col items-center justify-center text-center text-white ring-2 ring-black/40">
+                  <span className="font-heading text-[11px] sm:text-sm font-black leading-tight block">
                     YOUR SAY
                   </span>
-                  <span className="text-[10px] font-bold text-white/90 block mt-0.5">
+                  <span className="text-[9px] sm:text-[10px] font-bold text-white/90 block mt-0.5">
                     Our Direction
                   </span>
                 </div>
@@ -269,7 +269,7 @@ export default function OrbitDirection() {
                       <button
                         onClick={() => setActivePoint(idx)}
                         onMouseEnter={() => setActivePoint(idx)}
-                        className={`group relative w-13 h-13 sm:w-16 sm:h-16 rounded-full border flex flex-col items-center justify-center p-1 transition-all duration-200 cursor-pointer ${
+                        className={`group relative w-11 h-11 xs:w-13 xs:h-13 sm:w-16 sm:h-16 rounded-full border flex flex-col items-center justify-center p-1 transition-all duration-200 cursor-pointer ${
                           isSelected
                             ? "bg-[#C52623] text-white border-white scale-110 shadow-[4px_4px_0px_#851513] ring-2 ring-red-400"
                             : isDark
@@ -279,11 +279,11 @@ export default function OrbitDirection() {
                         title={pt.title}
                         aria-label={pt.title}
                       >
-                        <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 mb-0.5 group-hover:scale-110 transition-transform" />
-                        <span className="font-mono text-[7px] sm:text-[8px] font-black uppercase text-center leading-tight truncate max-w-[45px] sm:max-w-[55px]">
+                        <Icon className="w-3 h-3 sm:w-4 sm:h-4 mb-0.5 group-hover:scale-110 transition-transform" />
+                        <span className="font-mono text-[6.5px] xs:text-[7px] sm:text-[8px] font-black uppercase text-center leading-tight truncate max-w-[40px] xs:max-w-[45px] sm:max-w-[55px]">
                           {pt.title.split(" ")[0]}
                         </span>
-                        <span className="text-[6px] font-mono text-stone-400 group-hover:text-white">
+                        <span className="text-[5.5px] xs:text-[6px] font-mono text-stone-400 group-hover:text-white">
                           {pt.num}
                         </span>
                       </button>
@@ -298,7 +298,7 @@ export default function OrbitDirection() {
           <div className="pt-3 text-center">
             <span className="text-[11px] font-mono text-stone-500 flex items-center justify-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#C52623] animate-ping" />
-              <span>5 Client Planetary Nodes in Continuous Synchronous Orbit</span>
+              <span>Interactive Feedback Orbit • Click to inspect</span>
             </span>
           </div>
         </div>
