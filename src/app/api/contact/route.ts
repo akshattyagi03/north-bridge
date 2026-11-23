@@ -5,7 +5,6 @@ import {
   validateContactForm,
   type ContactFormValues,
 } from "@/lib/contact-validation";
-import { checkContactRateLimit } from "@/lib/contact-rate-limit";
 import { getMongoClient } from "@/lib/mongodb";
 
 export const runtime = "nodejs";
@@ -20,20 +19,7 @@ function cleanRequirement(value: string) {
   return value.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f-\u009f]/g, "").trim();
 }
 
-function getClientKey(request: Request) {
-  const forwardedFor = request.headers.get("x-forwarded-for")?.split(",", 1)[0]?.trim();
-  return forwardedFor || request.headers.get("x-real-ip")?.trim() || "unknown";
-}
-
 export async function POST(request: Request) {
-  const rateLimit = checkContactRateLimit(getClientKey(request));
-  if (!rateLimit.allowed) {
-    return NextResponse.json(
-      { error: "Too many messages. Please try again in a little while." },
-      { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
-    );
-  }
-
   if (!request.headers.get("content-type")?.toLowerCase().includes("application/json")) {
     return NextResponse.json({ error: "Send the form as JSON." }, { status: 415 });
   }
